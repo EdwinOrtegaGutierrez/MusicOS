@@ -6,34 +6,145 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-5.3.0-alpha1-dist/css/bootstrap.min.css') }}">
-        <title>{% block title %}{% endblock %}MusicOS</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+        <title>{% block title %}MusicOS{% endblock %}</title>
         {% endblock %}
     </head>
     <body>
         
         <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Navbar</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <a class="navbar-brand" href="#">MusicOs</a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <div class="navbar-nav">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                        <a class="nav-link" href="#">Features</a>
-                        <a class="nav-link" href="#">Pricing</a>
-                        <a class="nav-link disabled">Disabled</a>
-                    </div>
+
+                <div class="collapse navbar-collapse" id="navbarText">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <a class="nav-brand"  href="#">
+                            <img class="img-fluid" src="/static/img/search.png" alt="Bootstrap" width="28" height="28" style="filter: brightness(0) invert(1);">
+                        </a>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#" style="text-transform: uppercase;">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" style="text-transform: uppercase;">Tienda</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" style="text-transform: uppercase;">Distribuidores</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" style="text-transform: uppercase;">Nosotros</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" style="text-transform: uppercase;">Contactanos</a>
+                        </li>
+                    </ul>    
+                    <form class="d-flex" role="login">
+                        <button type="button" class="form-control me-2 btn btn-danger" style="text-transform: uppercase;" >Acceder | Registrarse</button>
+                    </form>
                 </div>
             </div>
         </nav>
 
-        <div id="content">{% block content %}{% endblock %}</div>
+        <div id="content" data-bs-theme="dark">{% block content %}{% endblock %}</div>
         
-        <div id="footer">
-            {% block footer %}
-                &copy; Copyright 2023 by <a href="http://domain.invalid/">MusicOS</a>.
-            {% endblock %}
-        </div>
+        <footer class="text-center text-lg-start text-white" style="background-color: #1c2331">
+            <!-- Section: Social media -->
+            <section class="d-flex justify-content-between p-4" style="background-color: #dc3545;">
+            <!-- Left -->
+            <div class="me-5">
+                <span>Get connected with us on social networks:</span>
+            </div>
+            <!-- Left -->
+            <!-- Right -->
+            <div>
+                <a href="" class="text-white me-4">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="" class="text-white me-4">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="" class="text-white me-4">
+                    <i class="fab fa-google"></i>
+                </a>
+                <a href="" class="text-white me-4">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="" class="text-white me-4">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="" class="text-white me-4">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+            <!-- Right -->
+            </section>
+            <!-- Section: Social media -->
+
+            <!-- Section: Links  -->
+            <section class="">
+                <div class="container text-center text-md-start mt-5">
+                    <div class="row mt-3">
+                        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                            <h6 class="text-uppercase fw-bold">MusicOS</h6>
+                            <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px"/>
+                            <p>
+                                Somos una tienda de discos musicales. Nuestra misión es darle a los nostálgicos 
+                                de la música un viaje al pasado, dándoles la satisfacción que nececitan de sentir 
+                                la música real.
+                            </p>
+                        </div>
+
+                        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                            
+                            <h6 class="text-uppercase fw-bold">Secciones</h6>
+                            <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px"/>
+                            <p>
+                                <a href="#!" class="text-white">Generos</a>
+                            </p>
+                            <p>
+                                <a href="#!" class="text-white">Mi Cuenta</a>
+                            </p>
+
+                        </div>
+
+                        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                            <h6 class="text-uppercase fw-bold">Ligas útiles</h6>
+                            <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px"/>
+                            <p>
+                                <a href="#!" class="text-white">Facebook</a>
+                            </p>
+                            <p>
+                                <a href="#!" class="text-white">Instagram</a>
+                            </p>
+                            <p>
+                                <a href="#!" class="text-white"> Twitter</a>
+                            </p>
+                            <p>
+                                <a href="#!" class="text-white">Youtube</a>
+                            </p>
+                        </div>
+
+                        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                            <h6 class="text-uppercase fw-bold">Contacto</h6>
+                            <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px"
+                                />
+                            <p><i class="fas fa-home mr-3"></i> Jalisco, GDL 10012, MEX</p>
+                            <p><i class="fas fa-envelope mr-3"></i> musicos@musica.com</p>
+                            <p><i class="fas fa-phone mr-3"></i> + 52 33 28 12 48 59</p>
+                            <p><i class="fas fa-print mr-3"></i> + 01 234 567 89</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+                    © 2020 Copyright:
+                <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+            </div>
+        </footer>
+        
+        <script src="{{ url_for('static', filename='css/bootstrap-5.3.0-alpha1-dist/js/bootstrap.js') }}"></script>
     </body>
 </html>

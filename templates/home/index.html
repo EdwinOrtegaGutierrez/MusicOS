@@ -1,6 +1,18 @@
-{% extends "/home/base.html" %}
+{% extends "/home/base.html" %} 
 {% block title %}Index{% endblock %}
 
 {% block content %}
-    <h1>Contenido</h1>
+    <div class="text-center">      
+        <h1 class="display-1 fw-bold">TIENDA EN LÍNEA DE DISCOS MUSICALES.</h1>
+        <h3 class="fs-4 ">Rock, pop, jazz y  mucho más en MusicOS.</h3>
+    </div>
+
+    <div class="text-center">
+        <button type="button" class="btn btn-danger btn-lg fw-bold fs-1 ">
+            VER CATÁLOGO
+            <img  src="/static/img/play.png" alt="" width="43" height="38" style="filter: brightness(0) invert(1);"/><br/>
+        </button>
+    </div>
+    
+    
 {% endblock %}
