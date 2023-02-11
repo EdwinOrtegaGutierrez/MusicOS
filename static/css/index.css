@@ -1,0 +1,14 @@
+#btn_catalogo button{
+    margin-top: 40%;
+    margin-bottom: 2.8%;
+}
+
+@media screen and (max-width: 898px) {
+    #titulo{
+        font-size: 100%;
+        padding-top: 3%;
+    }
+    #subtitulo{
+        font-size: 90%;
+    }
+}
