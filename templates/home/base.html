@@ -12,16 +12,16 @@
     </head>
     <body>
         
-        <nav class="navbar navbar-expand-lg bg-black bg-gradient" data-bs-theme="dark">
+        <nav class="navbar navbar-dark navbar-expand-lg bg-dark" data-bs-theme="dark">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#"> <p class="h4">MusicOS</p></a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                    <span><img src="{{ url_for('static', filename='img/menu.png') }}" width="25" height="25" style="filter: brightness(0) invert(1);"></span>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarText">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <ul class="navbar-nav navbar-center me-auto mb-2 mb-lg-0">
                         <li class="nav-item">    
                             <a class="navbar-item fw-bold fs-5" href="#">
                                 <img  src="{{ url_for('static', filename='img/search.png') }}" alt="" width="25" height="25" style="filter: brightness(0) invert(1);"/>
@@ -53,37 +53,12 @@
         <div class="content" data-bs-theme="dark">{% block content %}{% endblock %}</div>
         
         <footer class="text-lg-start text-white" style="background-color: #1c2331">
-            <!-- Section: Social media -->
             <section class="d-flex justify-content-between p-4" style="background-color: #dc3545;">
-            <!-- Left -->
             <div>
-                <span class="text-left" style="text-align: justify;">Get connected with us on social networks:</span>
+                <span class="text-left" style="text-align: justify;">Get connected with us:</span>
             </div>
-            <!-- Left -->
-            <!-- Right -->
-            <div>
-                <a href="" class="me-4">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-                <a href="" class="me-4">
-                    <i class="fab fa-twitter"></i>
-                </a>
-                <a href="" class="me-4">
-                    <i class="fab fa-google"></i>
-                </a>
-                <a href="" class="me-4">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="" class="me-4">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-                <a href="" class="me-4">
-                    <i class="fab fa-github"></i>
-                </a>
-            </div>
-            <!-- Right -->
+            
             </section>
-            <!-- Section: Social media -->
 
             <!-- Section: Links  -->
             <section class="">
@@ -131,8 +106,7 @@
 
                         <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
                             <h6 class="text-uppercase fw-bold">Contacto</h6>
-                            <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px"
-                                />
+                            <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px"/>
                             <p><i class="fas fa-home mr-3"></i> Jalisco, GDL 10012, MEX</p>
                             <p><i class="fas fa-envelope mr-3"></i> musicos@musica.com</p>
                             <p><i class="fas fa-phone mr-3"></i> + 52 33 28 12 48 59</p>
