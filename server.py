@@ -13,4 +13,7 @@ def index():
 
 if __name__ == "__main__":
     #app.secret_key = 'super secret key' #NECESARIO PARA MANDAR MENSAJES PRIVADOS
-    app.run(host = '0.0.0.0', port=80, debug=True)
+    app.run(
+        host = '0.0.0.0', 
+        port=80, 
+        debug=True)
