@@ -12,45 +12,57 @@
     </head>
     <body>
         
-        <nav class="navbar navbar-dark navbar-expand-lg bg-dark" data-bs-theme="dark">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#"> <p class="h4">MusicOS</p></a>
-
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                    <span><img src="{{ url_for('static', filename='img/menu.png') }}" width="25" height="25" style="filter: brightness(0) invert(1);"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarText">
-                    <ul class="navbar-nav navbar-center me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">    
-                            <a class="navbar-item fw-bold fs-5" href="#">
-                                <img  src="{{ url_for('static', filename='img/search.png') }}" alt="" width="25" height="25" style="filter: brightness(0) invert(1);"/>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#" style="text-transform: uppercase;">Inicio</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#" style="text-transform: uppercase;">Tienda</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#" style="text-transform: uppercase;">Distribuidores</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#" style="text-transform: uppercase;">Nosotros</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#" style="text-transform: uppercase;">Contactanos</a>
-                        </li>
-                    </ul>    
-                    <form class="d-flex" role="login">
-                        <button type="button" class="form-control me-2 btn btn-danger" style="text-transform: uppercase;" >Acceder | Registrarse</button>
-                    </form>
+        <header>
+            <nav class="navbar navbar-dark navbar-expand-lg bg-dark" data-bs-theme="dark">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#"> <p class="h4">MusicOS</p></a>
+    
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                        <span><img src="{{ url_for('static', filename='img/menu.png') }}" width="25" height="25" style="filter: brightness(0) invert(1);"></span>
+                    </button>
+    
+                    <div class="collapse navbar-collapse" id="navbarText">
+                        <ul class="navbar-nav navbar-center me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">    
+                                <a class="navbar-item fw-bold fs-5" href="#">
+                                    <img  src="{{ url_for('static', filename='img/search.png') }}" alt="" width="25" height="25" style="filter: brightness(0) invert(1);"/>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#" style="text-transform: uppercase;">Inicio</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" style="text-transform: uppercase;">Tienda</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" style="text-transform: uppercase;">Distribuidores</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" style="text-transform: uppercase;">Nosotros</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" style="text-transform: uppercase;">Contactanos</a>
+                            </li>
+                        </ul>    
+                        <form class="d-flex" role="login">
+                            <button type="button" class="form-control me-2 btn btn-danger" style="text-transform: uppercase;" >Acceder | Registrarse</button>
+                        </form>
+                    </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
+        </header>
 
-        <div class="content" data-bs-theme="dark">{% block content %}{% endblock %}</div>
+        <main data-bs-theme="dark" class="bg-dark">
+            <div class="content">    
+                {% block main_content %}{% endblock %}
+            </div>
+            <div class="category">
+                {% block products%}{% endblock %}
+            </div>
+            <div class="sold">
+                {% block sold %}{% endblock %}
+            </div>
+        </main>
         
         <footer class="text-lg-start text-white" style="background-color: #1c2331">
             <section class="d-flex justify-content-between p-4" style="background-color: #dc3545;">
@@ -117,7 +129,7 @@
             </section>
             <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
                     © 2020 Copyright:
-                <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+                <a class="text-white" href="https://musicos.glitch.me/">MusicOS.com</a>
             </div>
         </footer>
         
