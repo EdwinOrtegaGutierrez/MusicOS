@@ -11,6 +11,10 @@ app.config.update(
 def index():
     return html('home/index.html')
 
+@app.route('/store')
+def store():
+    return html('store/index.html')
+
 if __name__ == "__main__":
     #app.secret_key = 'super secret key' #NECESARIO PARA MANDAR MENSAJES PRIVADOS
     app.run(

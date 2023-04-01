@@ -1,49 +1,49 @@
-const galleryContainer = document.querySelector('.gallery-container');
-const galleryControlsContainer = document.querySelector('.gallery-controls');
+const galleryContainers = document.querySelectorAll('.gallery-container');
+const galleryControlsContainers = document.querySelectorAll('.gallery-controls');
 const galleryControls = ['previous', 'next'];
-const galleryItems = document.querySelectorAll('.gallery-item');
 
-class Carousel{
-    constructor(container, items, controls){
+class Carousel {
+    constructor(container, items, controls) {
         this.carouselContainer = container;
         this.carouselControls = controls;
         this.carouselArray = [...items];
     }
 
-    updateGallery(){
-        this.carouselArray.forEach(el => {
-            el.classList.remove('gallery-item-1');
-            el.classList.remove('gallery-item-2');
-            el.classList.remove('gallery-item-3');
-            el.classList.remove('gallery-item-4');
-            el.classList.remove('gallery-item-5');
+    updateGallery() {
+        this.carouselArray.forEach((el) => {
+            for (let i = 1; i <= 5; i++) {
+                el.classList.remove(`gallery-item-${i}`);
+            }
         });
 
         this.carouselArray.slice(0, 5).forEach((el, i) => {
-            el.classList.add(`gallery-item-${i+1}`);
+            el.classList.add(`gallery-item-${i + 1}`);
         });
     }
-    setCurrentState(direction){
-        if (direction.className == 'gallery-controls-previous'){
+
+    setCurrentState(direction) {
+        if (direction.className === 'gallery-controls-previous') {
             this.carouselArray.unshift(this.carouselArray.pop());
-        }else{
+        } else {
             this.carouselArray.push(this.carouselArray.shift());
         }
         this.updateGallery();
     }
 
-    setControls(){
-        this.carouselControls.forEach(control => {
-            galleryControlsContainer.appendChild(document.createElement('button')).className = `gallery-controls-${control}`;
-            document.querySelector(`.gallery-controls-${control}`).innerText = control;
-            document.querySelector(`.gallery-controls-${control}`).style.color = 'white'; // Agregar esta línea para establecer el color del texto en blanco
+    setControls() {
+        this.carouselControls.forEach((control) => {
+            const button = document.createElement('button');
+            button.className = `gallery-controls-${control}`;
+            button.style.color = 'white'; // Agregar esta línea para establecer el color del texto en blanco
+            const controlsContainer = galleryControlsContainers[this.carouselContainer.dataset.galleryIndex];
+            controlsContainer.appendChild(button);
         });
     }
 
-    useControls(){
-        const triggers = [...galleryControlsContainer.childNodes];
-        triggers.forEach(control => {
-            control.addEventListener('click', e => {
+    useControls() {
+        const triggers = [...this.carouselContainer.parentNode.querySelectorAll('.gallery-controls button')];
+        triggers.forEach((control) => {
+            control.addEventListener('click', (e) => {
                 e.preventDefault();
                 this.setCurrentState(control);
             });
@@ -51,7 +51,12 @@ class Carousel{
     }
 }
 
-const carousel = new Carousel(galleryContainer, galleryItems, galleryControls);
+const carousels = [];
 
-carousel.setControls();
-carousel.useControls();
+galleryContainers.forEach((container, index) => {
+    container.dataset.galleryIndex = index; // agregar un atributo de índice para identificar la galería actual
+    const carousel = new Carousel(container, container.querySelectorAll('.gallery-item'), galleryControls);
+    carousel.setControls();
+    carousel.useControls();
+    carousels.push(carousel);
+});
