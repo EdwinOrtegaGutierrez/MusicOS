@@ -1,4 +1,4 @@
-{% extends "/home/base.html" %} 
+{% extends "/base/base.html" %} 
 {% block head %} 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
 {% endblock %}
@@ -21,41 +21,65 @@
 {% endblock %}
 
 {% block products%}
-<div class="gallery-title">
-    <p class="display-5 text-uppercase text-center text-white">categorías</p>
-    <hr class="mx-auto" style="color: crimson; width: 70%;">
-</div>
-<div class="body">
-    <div class="gallery">
-        <div class="gallery-container">
-            <img class="gallery-item gallery-item-1" src="{{ url_for('static', filename='/img/home/test1.jpg') }}" data-index="1">
-            <img class="gallery-item gallery-item-2" src="{{ url_for('static', filename='/img/home/test2.jpg') }}" data-index="2">
-            <img class="gallery-item gallery-item-3" src="{{ url_for('static', filename='/img/home/test3.jpg') }}" data-index="3">
-            <img class="gallery-item gallery-item-4" src="{{ url_for('static', filename='/img/home/test4.jpg') }}" data-index="4">
-            <img class="gallery-item gallery-item-5" src="{{ url_for('static', filename='/img/home/test5.jpg') }}" data-index="5">
-        </div>
-        <div class="gallery-controls"></div>
+    <div class="gallery-title">
+        <hr class="mx-auto" style="color: crimson; width: 70%;">
+        <p class="display-5 text-uppercase text-center text-white">Principales géneros</p>
+        <hr class="mx-auto" style="color: crimson; width: 70%;">
     </div>
-</div>
-<script src="{{ url_for('static', filename='/scripts/index.js') }}"></script>
+    <div class="body">
+        <div class="gallery">
+            <div class="gallery-container">
+                <a href="/electronica">
+                    <img class="gallery-item gallery-item-1" src="{{ url_for('static', filename='/img/home/generos/electronica.jpg') }}" data-index="1">
+                </a>
+                <a href="/pop">
+                    <img class="gallery-item gallery-item-2" src="{{ url_for('static', filename='/img/home/generos/pop.jpg') }}" data-index="2">
+                </a>
+                <a href="/rock">                
+                    <img class="gallery-item gallery-item-3" src="{{ url_for('static', filename='/img/home/generos/rock.jpg') }}" data-index="3">
+                </a>
+                <a href="/hiphop">
+                    <img class="gallery-item gallery-item-4" src="{{ url_for('static', filename='/img/home/generos/hiphop.jpg') }}" data-index="4">
+                </a>
+                <a href="/jazz">
+                    <img class="gallery-item gallery-item-5" src="{{ url_for('static', filename='/img/home/generos/jazz.jpg') }}" data-index="5">
+                </a>
+            </div>
+            <div class="gallery-controls"></div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block sold %}
-<!-- <div class="banner-title">
-    <p class="display-5 text-uppercase text-center text-white">más vendidos</p>
-    <hr class="mx-auto" style="color: crimson; width: 70%;">
-</div>
-<div class="banner-body">
-    <div class="banner">
-        <div class="banner-container">
-            <img src="{{ url_for('static', filename='/img/home/test1.jpg') }}" class="banner-item banner-item-1" data-index="1">
-            <img src="{{ url_for('static', filename='/img/home/test2.jpg') }}" class="banner-item banner-item-2" data-index="2">
-            <img src="{{ url_for('static', filename='/img/home/test3.jpg') }}" class="banner-item banner-item-3" data-index="3">
-            <img src="{{ url_for('static', filename='/img/home/test4.jpg') }}" class="banner-item banner-item-4" data-index="4">
-            <img src="{{ url_for('static', filename='/img/home/test5.jpg') }}" class="banner-item banner-item-5" data-index="5">
-        </div>
-        <div class="banner-controls"></div>
+    <div class="gallery-title">
+        <hr class="mx-auto" style="color: #dc3545; width: 70%;">
+        <p class="display-5 text-uppercase text-center text-white">más vendidos</p>
+        <hr class="mx-auto" style="color: #dc3545; width: 70%;">
     </div>
-</div>
-<script src="{{ url_for('static', filename='/scripts/banner.js') }}"></script> -->
+    <div class="body">
+        <div class="gallery">
+            <div class="gallery-container">
+                <a href="/electronica">
+                    <img class="gallery-item gallery-item-1" src="{{ url_for('static', filename='/img/home/vendidos/lemons.jpg') }}" data-index="1">
+                </a>
+                <a href="/pop">
+                    <img class="gallery-item gallery-item-2" src="{{ url_for('static', filename='/img/home/vendidos/sour.jpg') }}" data-index="2">
+                </a>
+                <a href="/rock">                
+                    <img class="gallery-item gallery-item-3" src="{{ url_for('static', filename='/img/home/vendidos/backInBlack.jpg') }}" data-index="3">
+                </a>
+                <a href="/hiphop">
+                    <img class="gallery-item gallery-item-4" src="{{ url_for('static', filename='/img/home/vendidos/myBeautifulDarkTwistedFantasy.jpg') }}" data-index="4">
+                </a>
+                <a href="/jazz">
+                    <img class="gallery-item gallery-item-5" src="{{ url_for('static', filename='/img/home/vendidos/kindOfBlue.jpg') }}" data-index="5">
+                </a>
+            </div>
+            <div class="gallery-controls"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ url_for('static', filename='/scripts/index.js') }}"></script>
 {% endblock %}
