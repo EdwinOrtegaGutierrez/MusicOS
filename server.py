@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from flask import Flask, render_template as html, url_for
 
 app = Flask(__name__, template_folder="templates")
@@ -14,6 +16,10 @@ def index():
 @app.route('/store')
 def store():
     return html('store/index.html')
+
+@app.route('/about-us')
+def about_us():
+    return html('about_us/index.html')
 
 if __name__ == "__main__":
     #app.secret_key = 'super secret key' #NECESARIO PARA MANDAR MENSAJES PRIVADOS

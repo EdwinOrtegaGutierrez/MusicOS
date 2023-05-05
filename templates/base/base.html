@@ -35,13 +35,10 @@
                                 <a class="nav-link" href="/store" style="text-transform: uppercase;">Tienda</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#" style="text-transform: uppercase;">Distribuidores</a>
+                                <a class="nav-link" href="/about-us" style="text-transform: uppercase;">Nosotros</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#" style="text-transform: uppercase;">Nosotros</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" style="text-transform: uppercase;">Contactanos</a>
+                                <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#contactanos" style="text-transform: uppercase;">Contactanos</a>
                             </li>
                         </ul>    
                         <form class="d-flex" role="login">
@@ -55,14 +52,14 @@
             </nav>
         </header>
 
-        <main data-bs-theme="dark" class="bg-dark" id="page-content">
-            <div class="content">    
+        <main data-bs-theme="dark" style="background-color: #282c34;" id="page-content">
+            <div class="content" >    
                 {% block main_content %}{% endblock %}
             </div>
-            <div class="category">
+            <div class="category" >
                 {% block products%}{% endblock %}
             </div>
-            <div class="sold">
+            <div class="sold" >
                 {% block sold %}{% endblock %}
             </div>
         </main>
@@ -94,7 +91,7 @@
                             <h6 class="text-uppercase fw-bold">Secciones</h6>
                             <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px"/>
                             <p>
-                                <a href="#!" class="text-white">Generos</a>
+                                <a href="/store" class="text-white">Generos</a>
                             </p>
                             <p>
                                 <a href="#!" class="text-white">Mi Cuenta</a>
@@ -105,27 +102,19 @@
                         <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
                             <h6 class="text-uppercase fw-bold">Ligas útiles</h6>
                             <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px"/>
-                            <p>
-                                <a href="#!" class="text-white">Facebook</a>
-                            </p>
-                            <p>
-                                <a href="#!" class="text-white">Instagram</a>
-                            </p>
-                            <p>
-                                <a href="#!" class="text-white"> Twitter</a>
-                            </p>
-                            <p>
-                                <a href="#!" class="text-white">Youtube</a>
-                            </p>
+                            <p><img src="{{ url_for('static', filename='img/social_media/facebook.png') }}" style="width: 50px; margin-top: 7px;"> <a href="#" class="text-white">Facebook</a></p>
+                            <p><img src="{{ url_for('static', filename='img/social_media/instagram.png') }}" style="width: 50px; margin-top: 10px;"> <a href="#" class="text-white">Instagram</a></p>
+                            <p><img src="{{ url_for('static', filename='img/social_media/twitter.png') }}" style="width: 50px; margin-top: 10px;"> <a href="#" class="text-white">Twitter</a></p>
+                            <p><img src="{{ url_for('static', filename='img/social_media/youtube.png') }}" style="width: 50px; margin-top: 10px;"> <a href="#" class="text-white">Youtube</a></p>
                         </div>
 
                         <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
                             <h6 class="text-uppercase fw-bold">Contacto</h6>
                             <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px"/>
-                            <p><i class="fas fa-home mr-3"></i> Jalisco, GDL 10012, MEX</p>
-                            <p><i class="fas fa-envelope mr-3"></i> musicos@musica.com</p>
-                            <p><i class="fas fa-phone mr-3"></i> + 52 33 28 12 48 59</p>
-                            <p><i class="fas fa-print mr-3"></i> + 01 234 567 89</p>
+                            <p><img src="{{ url_for('static', filename='img/location.png') }}" style="width: 60px;;"> Jalisco, GDL 10012, MEX</p>
+                            <p><img src="{{ url_for('static', filename='img/mail.png') }}" style="width: 60px;;"> musicos@musica.com</p>
+                            <p><img src="{{ url_for('static', filename='img/phone.png') }}" style="width: 60px;;"> + 52 33 28 12 48 59</p>
+                            <p><img src="{{ url_for('static', filename='img/phone.png') }}" style="width: 60px;;"> + 01 234 567 89</p>
                         </div>
                     </div>
                 </div>
@@ -136,7 +125,7 @@
             </div>
         </footer>
 
-        <!-- Modal -->
+        <!-- Modal ACCEDER | REGISTRARSE -->
         <div class="modal fade" id="exampleModal" tabindex="1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
@@ -149,10 +138,10 @@
                                 <h2 class="text-center text-uppercase display-4">Acceder</h2>
                                 <!-- Aquí va el contenido del formulario para acceder -->
                                 <div class="col-auto">
-                                    <input type="email" class="form-control" name="email" id="email" placeholder="Usuario o correo" required>
+                                    <input type="email" class="form-control" name="email" id="emailAccess" placeholder="Usuario o correo" required>
                                 </div>
                                 <div class="col-auto">
-                                    <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña" required>
+                                    <input type="password" class="form-control" name="password" id="passwordAcces" placeholder="Contraseña" required>
                                 </div>
                                 <div class="col-auto text-center">
                                     <button type="submit" class="btn btn-danger " name="" id="login">Acceder</button>
@@ -163,22 +152,41 @@
                                 <h2 class="text-center text-uppercase display-4">Registro</h2>
                                 <!-- Aquí va el contenido del formulario para registrar -->
                                 <div class="col-auto">
-                                    <input type="email" class="form-control" name="email" id="user" placeholder="Nombre de usuario" required>
+                                    <input type="email" class="form-control" name="email" id="userName" placeholder="Nombre de usuario" required>
                                 </div>
                                 <div class="col-auto">
-                                    <input type="password" class="form-control" name="password" id="email" placeholder="Correo electronico" required>
+                                    <input type="password" class="form-control" name="password" id="emailSingUp" placeholder="Correo electronico" required>
                                 </div>
                                 <div class="col-auto">
-                                    <input type="email" class="form-control" name="email" id="password" placeholder="Contraseña" required>
+                                    <input type="email" class="form-control" name="email" id="passwordSingUp" placeholder="Contraseña" required>
                                 </div>
                                 <div class="col-auto">
-                                    <input type="password" class="form-control" name="password" id="vpassword" placeholder="Validar contraseña" required>
+                                    <input type="password" class="form-control" name="password" id="vpasswordSingUp" placeholder="Validar contraseña" required>
                                 </div>
                                 <div class="col-auto text-center">
                                     <button type="submit" class="btn btn-danger" name="" id="registrar">Registrar</button>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODAL CONOCENOS -->
+        <div class="modal fade" id="contactanos" tabindex="1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header" data-bs-theme="dark">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <h2 class="text-center text-uppercase display-4">Contactanos</h2>
+                        <p class="h-6"><img src="{{ url_for('static', filename='img/location.png') }}" style="width: 60px;;"> Jalisco, GDL 10012, MEX</p>
+                        <p class="h-6"><img src="{{ url_for('static', filename='img/mail.png') }}" style="width: 60px;;"> musicos.info@musica.com</p>
+                        <p class="h-6"><img src="{{ url_for('static', filename='img/phone.png') }}" style="width: 60px;;"> + 52 33 28 12 48 59</p>
+                        <p class="h-6"><img src="{{ url_for('static', filename='img/phone.png') }}" style="width: 60px;;"> + 01 234 567 89</p>
+
                     </div>
                 </div>
             </div>
