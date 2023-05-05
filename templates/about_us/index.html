@@ -1,0 +1,57 @@
+{% extends "/base/base.html" %} 
+
+{% block head %} 
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/about_us.css') }}">
+{% endblock %}
+
+{% block title %}MusicOS{% endblock %}
+
+{% block main_content %}
+    <div class="text-light bg-img">
+        <div class="container-box container">
+            <h1 class="display-3 text-uppercase">Agradecemos tu preferencia</h1>
+            <p class="lead">Somos una tienda de discos musicales. Nuestra misión es darle a los nostálgicos de la música un viaje al pasado, dándoles la satisfacción que necesitan de sentir la música real.</p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block sold %}
+    <div class="text-light py-5" id="equipo">
+        <div class="container">
+            <h2 class="display-4 text-center">Equipo De Trabajo</h2>
+            <hr class="mx-auto mb-5" style="color: crimson; width: 70%;">
+            <div class="row">
+                <div class="col-md-4 mb-5">
+                    <div class="card h-100">
+                        <img class="card-img-top" style="height: 550px;" src="https://images.unsplash.com/photo-1600604477371-7f2ddf782a2b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=670&q=80" alt="Card image cap">
+                        <div class="card-body">
+                            <h4 class="card-title text-center">Juan Perez</h4>
+                            <p class="card-text text-center">Gerente de Ventas</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-5">
+                    <div class="card h-100">
+                        <img class="card-img-top" style="height: 550px;" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80" alt="Card image cap">
+                        <div class="card-body">
+                            <h4 class="card-title text-center">Maria Rodriguez</h4>
+                            <p class="card-text text-center">Encargada de Compras</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-5">
+                    <div class="card h-100">
+                        <img class="card-img-top" style="height: 550px;" src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" alt="Card image cap">
+                        <div class="card-body">
+                            <h4 class="card-title text-center">Pedro Gonzales</h4>
+                            <p class="card-text text-center">Administrador de Empresas</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}

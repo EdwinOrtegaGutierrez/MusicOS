@@ -28,9 +28,7 @@
     flex-direction: row;
     align-items: center;
 }
-.gallery-title{
-    margin-top: 30px;
-}
+
 .gallery{
     width: 100%;
 }
