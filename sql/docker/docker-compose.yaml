@@ -1,0 +1,28 @@
+version: '3.7'
+services:
+  mysql:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mysql
+    restart: always
+    ports:
+      - 23306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: "eddy"
+      MYSQL_DATABASE: "db_eddy"
+      MYSQL_USER: "remote_user"
+      MYSQL_PASSWORD: "ru_pwd"
+    volumes:
+      - ./schemas:/var/lib/mysql:rw
+    networks:
+      mysql_network:
+        aliases:
+          - mysql_host
+
+volumes:
+  schemas: {}
+networks:
+  mysql_network:
+    name: mysql_net
+    driver: bridge

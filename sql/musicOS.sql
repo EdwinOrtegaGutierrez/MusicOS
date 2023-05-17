@@ -28,23 +28,38 @@ CREATE TABLE IF NOT EXISTS `albumes` (
   `canciones` text DEFAULT NULL,
   `genero` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`codigo_album`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla musicos.albumes: ~5 rows (aproximadamente)
+-- Volcando datos para la tabla musicos.albumes: ~10 rows (aproximadamente)
 /*!40000 ALTER TABLE `albumes` DISABLE KEYS */;
 INSERT INTO `albumes` (`autor`, `fecha_salida`, `titulo`, `precio`, `num_canciones`, `codigo_album`, `canciones`, `genero`) VALUES
 	('Pepe Arcilla', '2023-04-21', 'Surcando los mares de leche', 190, 3, 3, 'Pasilla, Chedar, Naranja', 'Rap'),
 	('Ve ve', '2023-04-24', 'Dios Estático', 200, 3, 4, 'Edgar el Cobrador, H3LL0, Expo', 'Rock'),
-	('Droms', '2023-04-25', 'Lavadora de dinero', 50, 3, 5, 'No tengo dinero, Préstame 100 varos te los pago el viernes, Elvis viene', 'Rap'),
+	('Droms', '2023-04-25', 'Lavadora de dinero', 50, 3, 5, 'No tengo dinero, Préstame 100 varos te los pago el viernes, Elvis viene', 'Trap'),
 	('Agaarree', '2023-04-19', 'C', 150, 3, 6, 'Sinam, Aye Aye, CrIstA', 'Jazz'),
-	('Clavo al vaquero', '2023-03-26', 'Anillos de Júpiter', 345, 2, 7, 'Anillos de Júpiter, En caja a Marte', 'Rap');
+	('Clavo al vaquero', '2023-03-26', 'Anillos de Júpiter', 345, 2, 7, 'Anillos de Júpiter, En caja a Marte', 'House'),
+	('WLFMAN', '2023-05-13', 'Hombre Máquina', 200, 3, 8, 'ION FNK2000, NOT EP, IF EXISTS', 'Techno'),
+	('El sueño', '2023-05-11', 'Monstruo de Gila', 43, 2, 9, 'Monstruo de Gila, Castillo se desmorona', 'Rap'),
+	('Come-Neuronas', '2023-05-11', 'Dejando mi pierna izquierda para la antropología', 67, 2, 10, 'Saludo de vuelta, 01-800-SMD', 'Rock'),
+	('G-O-D', '2023-05-20', 'EP! MEGAMIX', 100, 3, 11, 'EP 1, EP 2, EP 3', 'Techno'),
+	('Rey Pizza', '2023-05-21', 'Estoy en tu mente', 89, 2, 12, 'Estoy en tu mente, Estoy en tu mente difusa', 'House');
 /*!40000 ALTER TABLE `albumes` ENABLE KEYS */;
+
+-- Volcando estructura para procedimiento musicos.albumes_categoria
+DELIMITER //
+CREATE PROCEDURE `albumes_categoria`(
+	IN `dato` VARCHAR(50)
+)
+BEGIN
+SELECT titulo FROM albumes WHERE genero = dato ORDER BY titulo DESC;
+END//
+DELIMITER ;
 
 -- Volcando estructura para procedimiento musicos.mas_vendidos
 DELIMITER //
 CREATE PROCEDURE `mas_vendidos`()
 BEGIN
-SELECT codigo_album, total AS num_ventas FROM ventas ORDER BY num_ventas DESC;
+SELECT albumes.titulo, SUM(total) AS num_ventas FROM ventas JOIN albumes ON albumes.codigo_album = ventas.codigo_album GROUP BY albumes.titulo ORDER BY num_ventas DESC LIMIT 5;
 END//
 DELIMITER ;
 
@@ -67,6 +82,14 @@ CREATE TABLE IF NOT EXISTS `pedidos` (
 INSERT INTO `pedidos` (`codigo_pedido`, `codigo_usuario`, `codigo_album`, `direccion_pedido`, `estado`) VALUES
 	(1, 1, 5, 'Tonala #24', 'En espera');
 /*!40000 ALTER TABLE `pedidos` ENABLE KEYS */;
+
+-- Volcando estructura para procedimiento musicos.principales_generos
+DELIMITER //
+CREATE PROCEDURE `principales_generos`()
+BEGIN
+SELECT albumes.genero, SUM(total) AS totales FROM albumes JOIN ventas ON ventas.codigo_album = albumes.codigo_album GROUP BY albumes.genero ORDER BY totales DESC LIMIT 5;
+END//
+DELIMITER ;
 
 -- Volcando estructura para tabla musicos.usuarios
 CREATE TABLE IF NOT EXISTS `usuarios` (
@@ -92,14 +115,19 @@ CREATE TABLE IF NOT EXISTS `ventas` (
   CONSTRAINT `album` FOREIGN KEY (`codigo_album`) REFERENCES `albumes` (`codigo_album`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla musicos.ventas: ~4 rows (aproximadamente)
+-- Volcando datos para la tabla musicos.ventas: ~10 rows (aproximadamente)
 /*!40000 ALTER TABLE `ventas` DISABLE KEYS */;
 INSERT INTO `ventas` (`codigo_album`, `total`) VALUES
-	(3, 10),
-	(4, 5),
-	(5, 3),
-	(6, 7),
-	(7, 4);
+	(3, 15),
+	(4, 20),
+	(5, 10),
+	(6, 50),
+	(7, 30),
+	(8, 60),
+	(9, 19),
+	(10, 21),
+	(11, 61),
+	(12, 31);
 /*!40000 ALTER TABLE `ventas` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

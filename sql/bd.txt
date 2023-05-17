@@ -1,0 +1,17 @@
+Buscar usuarios: SELECT correo, contraseña FROM usuarios WHERE correo = "alan@gmail.com" and contraseña = "alan123";
+
+
+Principales géneros: SELECT albumes.genero, SUM(total) AS totales FROM albumes JOIN ventas ON ventas.codigo_album = albumes.codigo_album GROUP BY albumes.genero ORDER BY totales DESC LIMIT 5;
+CALL principales_generos();
+
+Más vendidos: SELECT albumes.titulo, SUM(total) AS num_ventas FROM ventas JOIN albumes ON albumes.codigo_album = ventas.codigo_album GROUP BY albumes.titulo ORDER BY num_ventas DESC LIMIT 5;
+CALL mas_vendidos();
+
+
+Categorías/Géneros: SELECT genero FROM albumes GROUP BY genero;
+Muestra los géneros que hay
+
+
+Mostrar álbumes dependiendo la categoría: SELECT titulo FROM albumes WHERE genero = "Rock" ORDER BY titulo ASC;
+INSERT INTO musicos.usuarios ('nombre', 'apellidos', 'correo', 'contraseña') VALUES ('', '', '', '');
+CALL albumes_categoria('Rock');
