@@ -1,0 +1,23 @@
+[
+    {
+        "name":"Edwin Ortega",
+        "photo":"/static/img/Edwin.png",
+        "github":"https://github.com/EdwinOrtegaGutierrez",
+        "workstation":"Full Stack Developer: Frontend, Backend & Dev Ops Developer",
+        "Description":"Versatile Software Engineer: Proficient in Full Stack Development, encompassing Frontend, Backend, and DevOps expertise"
+    },
+    {
+        "name":"ALAN LOPEZ",
+        "photo":"/static/img/Alan.png",
+        "github":"https://github.com/AlanLCervantes",
+        "workstation":"Database Administrator And Manager",
+        "Description":"Data Maestro: Expert in Database Administration and Management"
+    },
+    {
+        "name":"JORGE RODRIGUEZ",
+        "photo":"/static/img/pollo.png",
+        "github":"https://github.com/Jorge-Gaston",
+        "workstation":"Frontend Developer",
+        "Description":"User Experience Architect: Creative Frontend Developer Extraordinaire"
+    }
+]

@@ -1,0 +1,44 @@
+{% extends "/base/base.html" %} 
+
+{% block head %} 
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/store.css') }}">
+{% endblock %}
+
+{% block title %}MusicOS{% endblock %}
+
+{% block main_content %}
+<section class="store-container">
+    <aside class="sidebar">
+        <h3 class="text-center">Categorías</h3>
+        <hr style="color: #dc3545;">
+        <ul>
+            {% for cat in categorias %}     
+                <li><a href="/store/{{cat.genero}}">{{cat.genero}}</a></li>
+                <hr style="color: #7c4dff; width: 70%;">                     
+            {% endfor %}
+        </ul>
+    </aside>
+    <div class="content">
+        <div class="toggle-nav">    
+            <button class="toggle-sidebar mx-auto display-6">Ver Categorías</button>
+        </div>
+        <div class="products">
+            {% for g in generos%}
+                <div class="product">
+                    <img src="/static/img/home/generos/store/{{g.genero}}{{loop.index}}.jpg" alt="Producto 1">
+                    <h2>{{g.titulo}}</h2>
+                    <p>Autor: {{g.autor}}</p>
+                    <p>Genero: {{g.genero}}</p>
+                    <p>Canciones: {{g.canciones}}</p>
+                    <p class="price">${{g.precio}}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ url_for('static', filename='/scripts/store.js') }}"></script>
+{% endblock %}
