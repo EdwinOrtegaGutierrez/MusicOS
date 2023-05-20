@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 
 from flask import Flask, render_template as html, url_for
-
+from requests import get
+from json import loads, load
 app = Flask(__name__, template_folder="templates")
 
 app.config.update(
@@ -14,12 +15,28 @@ def index():
     return html('home/index.html')
 
 @app.route('/store')
-def store():
-    return html('store/index.html')
+def store(): 
+    categorias = get("http://192.168.1.9:280/Nombre_Categorias")
+    categorias = loads(categorias.content)
+    albumes = get("http://192.168.1.9:280/mas_ven")
+    albumes = loads(albumes.content)
+    with open('static/json/store.json') as f:
+        album_img = load(f)
+    return html('store/index.html', categorias = categorias, albumes = albumes, album_img = album_img)
+
+@app.route('/store/<string:genero>')
+def storeG(genero): 
+    categorias = get("http://192.168.1.9:280/Nombre_Categorias")
+    generos = get(f"http://192.168.1.9:280/{genero}/Albumes_Categorias")
+    generos = loads(generos.content)
+    categorias = loads(categorias.content)
+    return html('generos/index.html', categorias=categorias, generos=generos)
 
 @app.route('/about-us')
 def about_us():
-    return html('about_us/index.html')
+    with open('static/json/about_us.json') as f:
+        work_team = load(f)
+    return html('about_us/index.html', work_team = work_team)
 
 if __name__ == "__main__":
     #app.secret_key = 'super secret key' #NECESARIO PARA MANDAR MENSAJES PRIVADOS

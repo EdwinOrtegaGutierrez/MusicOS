@@ -18,35 +18,28 @@
 {% block sold %}
     <div class="text-light py-5" id="equipo">
         <div class="container">
-            <h2 class="display-4 text-center">Equipo De Trabajo</h2>
+            <h2 class="display-4 text-center">Work Team</h2>
             <hr class="mx-auto mb-5" style="color: crimson; width: 70%;">
             <div class="row">
-                <div class="col-md-4 mb-5">
-                    <div class="card h-100">
-                        <img class="card-img-top" style="height: 550px;" src="https://images.unsplash.com/photo-1600604477371-7f2ddf782a2b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=670&q=80" alt="Card image cap">
-                        <div class="card-body">
-                            <h4 class="card-title text-center">Juan Perez</h4>
-                            <p class="card-text text-center">Gerente de Ventas</p>
+                {% for wt in work_team %}
+                    <div class="col-md-4 mb-5">
+                        <div class="card h-100">
+                            <img class="card-img-top" style="height: 550px;" src="{{wt.photo}}" alt="Card image cap">
+                            <div class="card-body">
+                                <h4 class="card-title text-center">{{wt.name}}</h4>
+                                <p class="card-text text-center">{{wt.workstation}}</p>
+                            </div>
+                            <div class="card-body">
+                                <hr class="mx-auto" style="color: #7c4dff; width: 70%;">
+                                <p class="card-text text-uppercase text-center">About the job</p>
+                                <p class="card-text">{{wt.Description}}</p>
+                            </div>
+                            <div class="card-footer text-center">
+                                <a href="{{wt.github}}" target="_blank"><p class="card-text text-uppercase">Follow Me On Github</p></a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4 mb-5">
-                    <div class="card h-100">
-                        <img class="card-img-top" style="height: 550px;" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80" alt="Card image cap">
-                        <div class="card-body">
-                            <h4 class="card-title text-center">Maria Rodriguez</h4>
-                            <p class="card-text text-center">Encargada de Compras</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-5">
-                    <div class="card h-100">
-                        <img class="card-img-top" style="height: 550px;" src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" alt="Card image cap">
-                        <div class="card-body">
-                            <h4 class="card-title text-center">Pedro Gonzales</h4>
-                            <p class="card-text text-center">Administrador de Empresas</p>
-                        </div>
-                    </div>
+                {% endfor %}
                 </div>
             </div>
         </div>

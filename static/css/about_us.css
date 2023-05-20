@@ -16,3 +16,17 @@
     margin-top: 50px;
     text-shadow: 1px 1px 50px black;
 }
+
+.card-footer a{
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.card-footer a:hover{
+    background-color: #555;
+}
