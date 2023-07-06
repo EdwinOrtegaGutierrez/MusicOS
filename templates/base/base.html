@@ -144,7 +144,7 @@
                                     <input type="password" class="form-control" name="password" id="passwordAcces" placeholder="Contraseña" required>
                                 </div>
                                 <div class="col-auto text-center">
-                                    <button type="submit" class="btn btn-danger " name="" id="login">Acceder</button>
+                                    <button type="submit" class="btn btn-danger " name="" id="login" onclick="validarLogin()">Acceder</button>
                                 </div>
                                 <a href=""><p class="h-6">¿Olvidaste tu contraseña?</p></a>
                             </div>
@@ -164,6 +164,7 @@
                                     <input type="password" class="form-control" name="password" id="vpasswordSingUp" placeholder="Validar contraseña" required>
                                 </div>
                                 <div class="col-auto text-center">
+
                                     <button type="submit" class="btn btn-danger" name="" id="registrar">Registrar</button>
                                 </div>
                             </div>
@@ -201,6 +202,15 @@
                 $('.nav-item a.active').removeClass('active');
                 $('a[href="'+url+'"]').addClass('active');
             });
+
+            function validarLogin(){
+                var email = document.getElementById("emailAccess").value;
+                var password = document.getElementById("passwordAcces").value;
+                var confirmation = ""+password
+                if((email == "") || (confirmation == "")){
+                    alert("Error al iniciar sesión, por favor verifica los campos");
+                }
+            }
         </script>
         <script src="{{ url_for('static', filename='css/bootstrap-5.3.0-alpha1-dist/js/bootstrap.js') }}"></script>
     </body>
