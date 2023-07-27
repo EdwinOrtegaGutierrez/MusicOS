@@ -1,0 +1,32 @@
+.bg-img{
+    background-image: url('https://images.unsplash.com/photo-1525522819526-d571040e1607?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2069&q=80');
+    background-size: cover; 
+    background-position: center; 
+    padding: 15%;
+}
+
+.container-box{
+    background-color: #36393f85;
+    border-radius: 20px;
+    padding: 10px;
+    text-align: center;
+}
+
+.lead{
+    margin-top: 50px;
+    text-shadow: 1px 1px 50px black;
+}
+
+.card-footer a{
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.card-footer a:hover{
+    background-color: #555;
+}

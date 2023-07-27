@@ -1,0 +1,41 @@
+<main data-bs-theme="dark" style="background-color: #282c34;" id="page-content">
+    <div class="content" >    
+        <div class="text-light bg-img">
+            <div class="container-box container">
+                <h1 class="display-3 text-uppercase">Agradecemos tu preferencia</h1>
+                <p class="lead">Somos una tienda de discos musicales. Nuestra misión es darle a los nostálgicos de la música un viaje al pasado, dándoles la satisfacción que necesitan de sentir la música real.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="sold" >
+        <div class="text-light py-5" id="equipo">
+            <div class="container">
+                <h2 class="display-4 text-center">Work Team</h2>
+                <hr class="mx-auto mb-5" style="color: crimson; width: 70%;">
+                <div class="row">
+                    <ng-container *ngFor="let user of data">
+                        <div class="col-md-4 mb-5">
+                            <div class="card h-100">
+                                <img class="card-img-top" style="height: 40vh;" src="../../../assets/img/workTeam/{{user.photo}}" alt="Card image cap">
+                                <div class="card-body">
+                                    <h4 class="card-title text-center">{{user.name}}</h4>
+                                    <p class="card-text text-center">{{user.workstation}}</p>
+                                </div>
+                                <div class="card-body">
+                                    <hr class="mx-auto" style="color: #7c4dff; width: 70%;">
+                                    <p class="card-text text-uppercase text-center">About the job</p>
+                                    <p class="card-text">{{user.Description}}</p>
+                                </div>
+                                <div class="card-footer text-center">
+                                    <a href="{{user.github}}" target="_blank"><p class="card-text text-uppercase">Follow Me On Github</p></a>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+

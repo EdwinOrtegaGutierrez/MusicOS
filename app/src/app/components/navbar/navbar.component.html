@@ -1,0 +1,105 @@
+<header>
+    <nav class="navbar navbar-dark navbar-expand-lg bg-dark" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href=""> <p class="h4">MusicOS</p></a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span><img src="../../assets/img/navbar/menu.png" width="25" height="25" style="filter: brightness(0) invert(1);"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav navbar-center me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">    
+                        <a class="navbar-item fw-bold fs-5" href="#">
+                            <img  src="../../assets/img/navbar/search.png" alt="" width="25" height="25" style="filter: brightness(0) invert(1);"/>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/" style="text-transform: uppercase;">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/store" style="text-transform: uppercase;">Tienda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about-us" style="text-transform: uppercase;">Nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="modal" data-bs-target="#contactanos" style="text-transform: uppercase; cursor: pointer;">Contactanos</a>
+                    </li>
+                </ul>    
+                <form class="d-flex" role="login">
+                    <!-- Button trigger modal -->
+                    <button type="button" class="form-control me-2 btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" style="text-transform: uppercase;">
+                        Acceder | Registrarse
+                    </button>
+                </form>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<!-- Modal ACCEDER | REGISTRARSE -->
+<div class="modal fade" id="exampleModal" tabindex="1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header" data-bs-theme="dark">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6 col-der">
+                        <h2 class="text-center text-uppercase display-4">Acceder</h2>
+                        <!-- Aquí va el contenido del formulario para acceder -->
+                        <div class="col-auto">
+                            <input type="email" class="form-control" id="emailAccess" placeholder="Usuario o correo" required>
+                        </div>
+                        <div class="col-auto">
+                            <input type="password" class="form-control" id="passwordAccess" placeholder="Contraseña" required>
+                        </div>
+                        <div class="col-auto text-center">
+                            <button type="submit" class="btn btn-danger " id="login" (click)="validarLogin()">Acceder</button>
+                        </div>
+                        <a href=""><p class="h-6">¿Olvidaste tu contraseña?</p></a>
+                    </div>
+                    <div class="col-md-6 col-izq">
+                        <h2 class="text-center text-uppercase display-4">Registro</h2>
+                        <!-- Aquí va el contenido del formulario para registrar -->
+                        <div class="col-auto">
+                            <input type="text" class="form-control" id="userName" placeholder="Nombre de usuario" required>
+                        </div>
+                        <div class="col-auto">
+                            <input type="email" class="form-control" id="emailSingUp" placeholder="Correo electronico" required>
+                        </div>
+                        <div class="col-auto">
+                            <input type="password" class="form-control" id="passwordSingUp" placeholder="Contraseña" required>
+                        </div>
+                        <div class="col-auto">
+                            <input type="password" class="form-control" id="vpasswordSingUp" placeholder="Validar contraseña" required>
+                        </div>
+                        <div class="col-auto text-center">
+
+                            <button type="submit" class="btn btn-danger" id="registrar" (click)="validarRegistro()">Registrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL CONOCENOS -->
+<div class="modal fade" id="contactanos" tabindex="1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header" data-bs-theme="dark">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h2 class="text-center text-uppercase display-4">Contactanos</h2>
+                <ng-container *ngFor="let icon of contactsIcons">
+                    <p class="h-6"><img class="icon-contacts" src="../../assets/img/contacts/{{icon.iconName}}" alt="{{icon.description}}"> {{icon.description}}</p>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</div>
