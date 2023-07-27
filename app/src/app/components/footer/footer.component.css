@@ -1,0 +1,17 @@
+.icon-social-media, .icon-contacts{
+    width: 40px; /* Ajusta el tamaño deseado */
+    height: 40px; /* Ajusta el tamaño deseado */
+    margin-right: 5px;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.icon-contacts{
+    background-color: rgba(255, 254, 254, 0.2);
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.text-social-media{
+    text-decoration: none;
+}

@@ -1,0 +1,25 @@
+<section class="store-container">
+    <aside class="sidebar">
+        <h3 class="text-center">Categorías</h3>
+        <hr style="color: #dc3545;">
+        <ul>
+            <ng-container *ngFor="let test of testCategory">
+                <li><a href="/store/{{test}}" style="text-transform: capitalize;">{{test}}</a></li>
+                <hr style="color: #7c4dff; width: 70%;">                     
+            </ng-container>
+        </ul>
+    </aside>
+    <div class="content">
+        <div class="toggle-nav">    
+            <button class="toggle-sidebar mx-auto display-6">Ver Categorías</button>
+        </div>
+        <div class="products">
+            <ng-container *ngFor="let test of testProducts">
+                <div class="product">
+                    <img loading="lazy" src="{{test.image}}" alt="Imagen producto">
+                    <h2>{{test.title}}</h2>
+                </div>                    
+            </ng-container>
+        </div>
+    </div>
+</section>
