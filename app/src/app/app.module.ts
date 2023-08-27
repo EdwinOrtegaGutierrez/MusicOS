@@ -10,6 +10,7 @@ import { StoreComponent } from './routes/store/store.component';
 import { AboutUsComponent } from './routes/about-us/about-us.component';
 import { GenerosComponent } from './routes/generos/generos.component';
 import { StoreGenerosComponent } from './routes/store/store-generos/store-generos.component';
+import { TestComponent } from './components/test/test.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { StoreGenerosComponent } from './routes/store/store-generos/store-genero
     StoreComponent,
     AboutUsComponent,
     GenerosComponent,
-    StoreGenerosComponent
+    StoreGenerosComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,
