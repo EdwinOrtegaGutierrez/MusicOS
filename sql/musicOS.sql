@@ -1,261 +1,511 @@
--- --------------------------------------------------------
--- Host:                         127.0.0.1
--- Versión del servidor:         10.9.3-MariaDB - mariadb.org binary distribution
--- SO del servidor:              Win64
--- HeidiSQL Versión:             11.3.0.6295
--- --------------------------------------------------------
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 26-09-2023 a las 05:38:06
+-- Versión del servidor: 10.4.28-MariaDB
+-- Versión de PHP: 8.0.28
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET NAMES utf8 */;
-/*!50503 SET NAMES utf8mb4 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
+--
+-- Base de datos: `musicos`
+--
 
--- Volcando estructura de base de datos para musicos
-CREATE DATABASE IF NOT EXISTS `musicos` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `musicos`;
+DELIMITER $$
+--
+-- Procedimientos
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Albumes_Categorias` (IN `p_genero` VARCHAR(255))   BEGIN
+    SELECT * FROM albumes WHERE genero = p_genero;
+END$$
 
--- Volcando estructura para tabla musicos.albumes
-CREATE TABLE IF NOT EXISTS `albumes` (
+CREATE DEFINER=`root`@`localhost` PROCEDURE `categorias` ()   BEGIN
+SELECT genero FROM albumes GROUP BY genero;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Create_Client` (IN `p_nombre` VARCHAR(255), IN `p_apellidos` VARCHAR(255), IN `p_correo` VARCHAR(255), IN `p_contraseña` VARCHAR(255), IN `p_estado` VARCHAR(255))   BEGIN
+    INSERT INTO cliente(nombre, apellidos, correo, contraseña, estado)
+    VALUES (p_nombre, p_apellidos, p_correo, p_contraseña, p_estado);
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Login_Usuario` (IN `user_correo` VARCHAR(50), IN `user_password` VARCHAR(50))   BEGIN
+    DECLARE UserExists BOOLEAN;
+
+    -- Verificar si el usuario existe en la tabla
+    IF (SELECT 1 FROM cliente WHERE correo = user_correo AND contraseña = user_password) THEN
+        SET UserExists = TRUE; -- Usuario encontrado (true)
+    ELSE
+        SET UserExists = FALSE; -- Usuario no encontrado (false)
+    END IF;
+
+    SELECT UserExists;
+END$$
+
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `albumes`
+--
+
+CREATE TABLE `albumes` (
   `autor` varchar(50) NOT NULL,
   `fecha_salida` date NOT NULL,
   `titulo` varchar(50) NOT NULL,
-  `num_canciones` int(10) unsigned NOT NULL,
-  `codigo_album` int(11) NOT NULL AUTO_INCREMENT,
+  `num_canciones` int(10) UNSIGNED NOT NULL,
+  `codigo_album` int(11) NOT NULL,
   `canciones` text DEFAULT NULL,
   `genero` varchar(20) DEFAULT NULL,
   `estado` varchar(8) NOT NULL,
-  `precio` float DEFAULT NULL,
-  `portada` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`codigo_album`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+  `precio` float DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Volcando datos para la tabla musicos.albumes: ~10 rows (aproximadamente)
-/*!40000 ALTER TABLE `albumes` DISABLE KEYS */;
-INSERT INTO `albumes` (`autor`, `fecha_salida`, `titulo`, `num_canciones`, `codigo_album`, `canciones`, `genero`, `estado`, `precio`, `portada`) VALUES
-	('Pepe Arcilla', '2023-04-21', 'Surcando los mares de leche', 3, 3, 'Pasilla, Chedar, Naranja', 'Rap', '', 12, NULL),
-	('Ve ve', '2023-04-24', 'Dios Estático', 3, 4, 'Edgar el Cobrador, H3LL0, Expo', 'Rock', '', 45, NULL),
-	('Droms', '2023-04-25', 'Lavadora de dinero', 3, 5, 'No tengo dinero, Préstame 100 varos te los pago el viernes, Elvis viene', 'Trap', '', 45, NULL),
-	('Agaarree', '2023-04-19', 'C', 3, 6, 'Sinam, Aye Aye, CrIstA', 'Jazz', '', 34, NULL),
-	('Clavo al vaquero', '2023-03-26', 'Anillos de Júpiter', 2, 7, 'Anillos de Júpiter, En caja a Marte', 'House', '', 56, NULL),
-	('WLFMAN', '2023-05-13', 'Hombre Máquina', 3, 8, 'ION FNK2000, NOT EP, IF EXISTS', 'Techno', '', 45, NULL),
-	('El sueño', '2023-05-11', 'Monstruo de Gila', 2, 9, 'Monstruo de Gila, Castillo se desmorona', 'Rap', '', 74, NULL),
-	('Come-Neuronas', '2023-05-11', 'Dejando mi pierna izquierda para la antropología', 2, 10, 'Saludo de vuelta, 01-800-SMD', 'Rock', '', 43, NULL),
-	('G-O-D', '2023-05-20', 'EP! MEGAMIX', 3, 11, 'EP 1, EP 2, EP 3', 'Techno', '', 32, NULL),
-	('Rey Pizza', '2023-05-21', 'Estoy en tu mente', 2, 12, 'Estoy en tu mente, Estoy en tu mente difusa', 'House', '', 54, NULL);
-/*!40000 ALTER TABLE `albumes` ENABLE KEYS */;
+--
+-- Volcado de datos para la tabla `albumes`
+--
 
--- Volcando estructura para procedimiento musicos.albumes_categoria
-DELIMITER //
-CREATE PROCEDURE `albumes_categoria`(
-	IN `dato` VARCHAR(50)
-)
-BEGIN
-SELECT titulo FROM albumes WHERE genero = dato ORDER BY titulo DESC;
-END//
-DELIMITER ;
+INSERT INTO `albumes` (`autor`, `fecha_salida`, `titulo`, `num_canciones`, `codigo_album`, `canciones`, `genero`, `estado`, `precio`) VALUES
+('Pepe Arcilla', '2023-04-21', 'Surcando los mares de leche', 3, 3, 'Pasilla, Chedar, Naranja', 'Rap', '', 12),
+('Ve ve', '2023-04-24', 'Dios Estático', 3, 4, 'Edgar el Cobrador, H3LL0, Expo', 'Rock', '', 45),
+('Droms', '2023-04-25', 'Lavadora de dinero', 3, 5, 'No tengo dinero, Préstame 100 varos te los pago el viernes, Elvis viene', 'Trap', '', 45),
+('Agaarree', '2023-04-19', 'C', 3, 6, 'Sinam, Aye Aye, CrIstA', 'Jazz', '', 34),
+('Clavo al vaquero', '2023-03-26', 'Anillos de Júpiter', 2, 7, 'Anillos de Júpiter, En caja a Marte', 'House', '', 56),
+('WLFMAN', '2023-05-13', 'Hombre Máquina', 3, 8, 'ION FNK2000, NOT EP, IF EXISTS', 'Techno', '', 45),
+('El sueño', '2023-05-11', 'Monstruo de Gila', 2, 9, 'Monstruo de Gila, Castillo se desmorona', 'Rap', '', 74),
+('Come-Neuronas', '2023-05-11', 'Dejando mi pierna izquierda para la antropología', 2, 10, 'Saludo de vuelta, 01-800-SMD', 'Rock', '', 43),
+('G-O-D', '2023-05-20', 'EP! MEGAMIX', 3, 11, 'EP 1, EP 2, EP 3', 'Techno', '', 32),
+('Rey Pizza', '2023-05-21', 'Estoy en tu mente', 2, 12, 'Estoy en tu mente, Estoy en tu mente difusa', 'House', '', 54);
 
--- Volcando estructura para procedimiento musicos.categorias
-DELIMITER //
-CREATE PROCEDURE `categorias`()
-BEGIN
-SELECT genero FROM albumes GROUP BY genero;
-END//
-DELIMITER ;
+-- --------------------------------------------------------
 
--- Volcando estructura para tabla musicos.cliente
-CREATE TABLE IF NOT EXISTS `cliente` (
+--
+-- Estructura de tabla para la tabla `cliente`
+--
+
+CREATE TABLE `cliente` (
   `nombre` varchar(50) NOT NULL DEFAULT '',
   `apellidos` varchar(50) NOT NULL DEFAULT '',
   `correo` varchar(50) NOT NULL DEFAULT '',
   `contraseña` varchar(50) NOT NULL DEFAULT '',
-  `codigo_usuario` int(11) NOT NULL AUTO_INCREMENT,
-  `estado` varchar(8) NOT NULL,
-  `img_perfil` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`codigo_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  `codigo_usuario` int(11) NOT NULL,
+  `estado` varchar(8) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Volcando datos para la tabla musicos.cliente: ~0 rows (aproximadamente)
-/*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
-INSERT INTO `cliente` (`nombre`, `apellidos`, `correo`, `contraseña`, `codigo_usuario`, `estado`, `img_perfil`) VALUES
-	('Alan', 'Pollo Loco', 'alan@gmail.com', 'alan123', 1, 'activo', NULL);
-/*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
+--
+-- Volcado de datos para la tabla `cliente`
+--
 
--- Volcando estructura para tabla musicos.cliente_tarjeta
-CREATE TABLE IF NOT EXISTS `cliente_tarjeta` (
+INSERT INTO `cliente` (`nombre`, `apellidos`, `correo`, `contraseña`, `codigo_usuario`, `estado`) VALUES
+('Alan', 'Pollo Loco', 'alan@gmail.com', 'alan123', 1, 'activo'),
+('edwin', 'ortega', 'edwin@gmail.com', 'eddy', 2, 'Activo');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `cliente_tarjeta`
+--
+
+CREATE TABLE `cliente_tarjeta` (
   `id_tarjeta` int(11) DEFAULT NULL,
-  `id_usuario` int(11) DEFAULT NULL,
-  KEY `codigo_tarjeta` (`id_tarjeta`),
-  KEY `id_usuario` (`id_usuario`),
-  CONSTRAINT `codigo_tarjeta` FOREIGN KEY (`id_tarjeta`) REFERENCES `tarjetas` (`id_tarjeta`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `id_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `cliente` (`codigo_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `id_usuario` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Volcando datos para la tabla musicos.cliente_tarjeta: ~0 rows (aproximadamente)
-/*!40000 ALTER TABLE `cliente_tarjeta` DISABLE KEYS */;
-/*!40000 ALTER TABLE `cliente_tarjeta` ENABLE KEYS */;
+-- --------------------------------------------------------
 
--- Volcando estructura para tabla musicos.descuento
-CREATE TABLE IF NOT EXISTS `descuento` (
-  `id_descuento` int(11) NOT NULL AUTO_INCREMENT,
+--
+-- Estructura de tabla para la tabla `descuento`
+--
+
+CREATE TABLE `descuento` (
+  `id_descuento` int(11) NOT NULL,
   `cantidad` float DEFAULT NULL,
-  `estado` varchar(8) DEFAULT NULL,
-  PRIMARY KEY (`id_descuento`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+  `estado` varchar(8) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Volcando datos para la tabla musicos.descuento: ~1 rows (aproximadamente)
-/*!40000 ALTER TABLE `descuento` DISABLE KEYS */;
+--
+-- Volcado de datos para la tabla `descuento`
+--
+
 INSERT INTO `descuento` (`id_descuento`, `cantidad`, `estado`) VALUES
-	(1, NULL, NULL);
-/*!40000 ALTER TABLE `descuento` ENABLE KEYS */;
+(1, NULL, NULL);
 
--- Volcando estructura para tabla musicos.envios
-CREATE TABLE IF NOT EXISTS `envios` (
-  `id_envios` int(11) NOT NULL AUTO_INCREMENT,
-  `estado` tinytext DEFAULT NULL,
-  PRIMARY KEY (`id_envios`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+-- --------------------------------------------------------
 
--- Volcando datos para la tabla musicos.envios: ~0 rows (aproximadamente)
-/*!40000 ALTER TABLE `envios` DISABLE KEYS */;
-/*!40000 ALTER TABLE `envios` ENABLE KEYS */;
+--
+-- Estructura de tabla para la tabla `envios`
+--
 
--- Volcando estructura para tabla musicos.envio_pedido
-CREATE TABLE IF NOT EXISTS `envio_pedido` (
+CREATE TABLE `envios` (
+  `id_envios` int(11) NOT NULL,
+  `estado` tinytext DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `envio_pedido`
+--
+
+CREATE TABLE `envio_pedido` (
   `id_pedido` int(11) NOT NULL,
-  `id_envio` int(11) NOT NULL,
-  KEY `pedido` (`id_pedido`) USING BTREE,
-  KEY `envio` (`id_envio`),
-  CONSTRAINT `envio` FOREIGN KEY (`id_envio`) REFERENCES `envios` (`id_envios`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `pedido` FOREIGN KEY (`id_pedido`) REFERENCES `pedidos` (`id_pedido`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `id_envio` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Volcando datos para la tabla musicos.envio_pedido: ~0 rows (aproximadamente)
-/*!40000 ALTER TABLE `envio_pedido` DISABLE KEYS */;
-/*!40000 ALTER TABLE `envio_pedido` ENABLE KEYS */;
+-- --------------------------------------------------------
 
--- Volcando estructura para procedimiento musicos.mas_vendidos
-DELIMITER //
-CREATE PROCEDURE `mas_vendidos`()
-BEGIN
-SELECT albumes.titulo, SUM(total) AS num_ventas FROM ventas JOIN albumes ON albumes.codigo_album = ventas.codigo_album GROUP BY albumes.titulo ORDER BY num_ventas DESC LIMIT 5;
-END//
-DELIMITER ;
+--
+-- Estructura de tabla para la tabla `imagenes`
+--
 
--- Volcando estructura para tabla musicos.pedidos
-CREATE TABLE IF NOT EXISTS `pedidos` (
+CREATE TABLE `imagenes` (
+  `id_imagen` int(11) NOT NULL,
+  `ruta` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `imagen_album`
+--
+
+CREATE TABLE `imagen_album` (
+  `id_album` int(11) DEFAULT NULL,
+  `id_imagen` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `imagen_cliente`
+--
+
+CREATE TABLE `imagen_cliente` (
+  `id_cliente` int(11) DEFAULT NULL,
+  `id_imagen` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pedidos`
+--
+
+CREATE TABLE `pedidos` (
   `direccion_pedido` varchar(50) DEFAULT NULL,
   `estado` varchar(50) DEFAULT NULL,
-  `id_pedido` int(11) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`id_pedido`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `id_pedido` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Volcando datos para la tabla musicos.pedidos: ~0 rows (aproximadamente)
-/*!40000 ALTER TABLE `pedidos` DISABLE KEYS */;
-/*!40000 ALTER TABLE `pedidos` ENABLE KEYS */;
+-- --------------------------------------------------------
 
--- Volcando estructura para procedimiento musicos.principales_generos
-DELIMITER //
-CREATE PROCEDURE `principales_generos`()
-BEGIN
-SELECT albumes.genero, SUM(total) AS totales FROM albumes JOIN ventas ON ventas.codigo_album = albumes.codigo_album GROUP BY albumes.genero ORDER BY totales DESC LIMIT 5;
-END//
-DELIMITER ;
+--
+-- Estructura de tabla para la tabla `tarjetas`
+--
 
--- Volcando estructura para tabla musicos.tarjetas
-CREATE TABLE IF NOT EXISTS `tarjetas` (
+CREATE TABLE `tarjetas` (
   `numero_tarjeta` varchar(16) NOT NULL,
   `fecha_caducidad` date NOT NULL,
   `titular` varchar(50) NOT NULL,
   `emisor` varchar(9) NOT NULL,
   `cvv` int(3) NOT NULL,
-  `id_tarjeta` int(3) NOT NULL AUTO_INCREMENT,
-  `estado` varchar(8) DEFAULT NULL,
-  PRIMARY KEY (`id_tarjeta`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  `id_tarjeta` int(3) NOT NULL,
+  `estado` varchar(8) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Volcando datos para la tabla musicos.tarjetas: ~0 rows (aproximadamente)
-/*!40000 ALTER TABLE `tarjetas` DISABLE KEYS */;
+--
+-- Volcado de datos para la tabla `tarjetas`
+--
+
 INSERT INTO `tarjetas` (`numero_tarjeta`, `fecha_caducidad`, `titular`, `emisor`, `cvv`, `id_tarjeta`, `estado`) VALUES
-	('1234567890112233', '2023-08-14', 'Pepe Gallo', 'VISA', 123, 1, NULL);
-/*!40000 ALTER TABLE `tarjetas` ENABLE KEYS */;
+('1234567890112233', '2023-08-14', 'Pepe Gallo', 'VISA', 123, 1, NULL);
 
--- Volcando estructura para tabla musicos.transporte
-CREATE TABLE IF NOT EXISTS `transporte` (
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `transporte`
+--
+
+CREATE TABLE `transporte` (
   `placa` varchar(10) NOT NULL,
   `conductor` varchar(50) DEFAULT NULL,
-  `estado` tinytext DEFAULT NULL,
-  PRIMARY KEY (`placa`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `estado` tinytext DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Volcando datos para la tabla musicos.transporte: ~0 rows (aproximadamente)
-/*!40000 ALTER TABLE `transporte` DISABLE KEYS */;
-/*!40000 ALTER TABLE `transporte` ENABLE KEYS */;
+-- --------------------------------------------------------
 
--- Volcando estructura para tabla musicos.transporte_envio
-CREATE TABLE IF NOT EXISTS `transporte_envio` (
+--
+-- Estructura de tabla para la tabla `transporte_envio`
+--
+
+CREATE TABLE `transporte_envio` (
   `id_envio` int(11) DEFAULT NULL,
-  `placa_transporte` varchar(10) DEFAULT NULL,
-  KEY `id_envio` (`id_envio`),
-  KEY `placa_transporte` (`placa_transporte`),
-  CONSTRAINT `id_envio` FOREIGN KEY (`id_envio`) REFERENCES `envios` (`id_envios`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `placa_transporte` FOREIGN KEY (`placa_transporte`) REFERENCES `transporte` (`placa`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `placa_transporte` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Volcando datos para la tabla musicos.transporte_envio: ~0 rows (aproximadamente)
-/*!40000 ALTER TABLE `transporte_envio` DISABLE KEYS */;
-/*!40000 ALTER TABLE `transporte_envio` ENABLE KEYS */;
+-- --------------------------------------------------------
 
--- Volcando estructura para tabla musicos.ventas
-CREATE TABLE IF NOT EXISTS `ventas` (
+--
+-- Estructura de tabla para la tabla `ventas`
+--
+
+CREATE TABLE `ventas` (
   `tipo_pago` varchar(7) DEFAULT NULL,
-  `id_compra` int(11) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`id_compra`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `id_compra` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Volcando datos para la tabla musicos.ventas: ~0 rows (aproximadamente)
-/*!40000 ALTER TABLE `ventas` DISABLE KEYS */;
-/*!40000 ALTER TABLE `ventas` ENABLE KEYS */;
+-- --------------------------------------------------------
 
--- Volcando estructura para tabla musicos.venta_descuento
-CREATE TABLE IF NOT EXISTS `venta_descuento` (
+--
+-- Estructura de tabla para la tabla `venta_descuento`
+--
+
+CREATE TABLE `venta_descuento` (
   `id_compra` int(11) DEFAULT NULL,
-  `id_descuento` int(11) DEFAULT NULL,
-  KEY `codigo_compra` (`id_compra`),
-  KEY `codigo_descuento` (`id_descuento`),
-  CONSTRAINT `codigo_compra` FOREIGN KEY (`id_compra`) REFERENCES `ventas` (`id_compra`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `codigo_descuento` FOREIGN KEY (`id_descuento`) REFERENCES `descuento` (`id_descuento`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `id_descuento` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Volcando datos para la tabla musicos.venta_descuento: ~0 rows (aproximadamente)
-/*!40000 ALTER TABLE `venta_descuento` DISABLE KEYS */;
-/*!40000 ALTER TABLE `venta_descuento` ENABLE KEYS */;
+-- --------------------------------------------------------
 
--- Volcando estructura para tabla musicos.venta_pedido
-CREATE TABLE IF NOT EXISTS `venta_pedido` (
+--
+-- Estructura de tabla para la tabla `venta_pedido`
+--
+
+CREATE TABLE `venta_pedido` (
   `codigo_usuario` int(11) NOT NULL,
   `codigo_album` int(11) NOT NULL,
   `id_compra` int(11) DEFAULT NULL,
-  `id_pedido` int(11) DEFAULT NULL,
-  KEY `codigo_usuario` (`codigo_usuario`),
-  KEY `codigo_album` (`codigo_album`),
-  KEY `id_compra` (`id_compra`),
-  KEY `id_pedido` (`id_pedido`),
-  CONSTRAINT `codigo_album` FOREIGN KEY (`codigo_album`) REFERENCES `albumes` (`codigo_album`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `codigo_usuario` FOREIGN KEY (`codigo_usuario`) REFERENCES `cliente` (`codigo_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `id_compra` FOREIGN KEY (`id_compra`) REFERENCES `ventas` (`id_compra`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `id_pedido` FOREIGN KEY (`id_pedido`) REFERENCES `pedidos` (`id_pedido`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `id_pedido` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Volcando datos para la tabla musicos.venta_pedido: ~1 rows (aproximadamente)
-/*!40000 ALTER TABLE `venta_pedido` DISABLE KEYS */;
+--
+-- Volcado de datos para la tabla `venta_pedido`
+--
+
 INSERT INTO `venta_pedido` (`codigo_usuario`, `codigo_album`, `id_compra`, `id_pedido`) VALUES
-	(1, 5, NULL, NULL);
-/*!40000 ALTER TABLE `venta_pedido` ENABLE KEYS */;
+(1, 5, NULL, NULL);
 
-/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
-/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `albumes`
+--
+ALTER TABLE `albumes`
+  ADD PRIMARY KEY (`codigo_album`);
+
+--
+-- Indices de la tabla `cliente`
+--
+ALTER TABLE `cliente`
+  ADD PRIMARY KEY (`codigo_usuario`);
+
+--
+-- Indices de la tabla `cliente_tarjeta`
+--
+ALTER TABLE `cliente_tarjeta`
+  ADD KEY `codigo_tarjeta` (`id_tarjeta`),
+  ADD KEY `id_usuario` (`id_usuario`);
+
+--
+-- Indices de la tabla `descuento`
+--
+ALTER TABLE `descuento`
+  ADD PRIMARY KEY (`id_descuento`) USING BTREE;
+
+--
+-- Indices de la tabla `envios`
+--
+ALTER TABLE `envios`
+  ADD PRIMARY KEY (`id_envios`);
+
+--
+-- Indices de la tabla `envio_pedido`
+--
+ALTER TABLE `envio_pedido`
+  ADD KEY `pedido` (`id_pedido`) USING BTREE,
+  ADD KEY `envio` (`id_envio`);
+
+--
+-- Indices de la tabla `imagenes`
+--
+ALTER TABLE `imagenes`
+  ADD PRIMARY KEY (`id_imagen`);
+
+--
+-- Indices de la tabla `imagen_album`
+--
+ALTER TABLE `imagen_album`
+  ADD KEY `Índice 1` (`id_album`),
+  ADD KEY `Índice 2` (`id_imagen`);
+
+--
+-- Indices de la tabla `imagen_cliente`
+--
+ALTER TABLE `imagen_cliente`
+  ADD KEY `Índice 1` (`id_cliente`),
+  ADD KEY `Índice 2` (`id_imagen`);
+
+--
+-- Indices de la tabla `pedidos`
+--
+ALTER TABLE `pedidos`
+  ADD PRIMARY KEY (`id_pedido`) USING BTREE;
+
+--
+-- Indices de la tabla `tarjetas`
+--
+ALTER TABLE `tarjetas`
+  ADD PRIMARY KEY (`id_tarjeta`);
+
+--
+-- Indices de la tabla `transporte`
+--
+ALTER TABLE `transporte`
+  ADD PRIMARY KEY (`placa`);
+
+--
+-- Indices de la tabla `transporte_envio`
+--
+ALTER TABLE `transporte_envio`
+  ADD KEY `id_envio` (`id_envio`),
+  ADD KEY `placa_transporte` (`placa_transporte`);
+
+--
+-- Indices de la tabla `ventas`
+--
+ALTER TABLE `ventas`
+  ADD PRIMARY KEY (`id_compra`);
+
+--
+-- Indices de la tabla `venta_descuento`
+--
+ALTER TABLE `venta_descuento`
+  ADD KEY `codigo_compra` (`id_compra`),
+  ADD KEY `codigo_descuento` (`id_descuento`);
+
+--
+-- Indices de la tabla `venta_pedido`
+--
+ALTER TABLE `venta_pedido`
+  ADD KEY `codigo_usuario` (`codigo_usuario`),
+  ADD KEY `codigo_album` (`codigo_album`),
+  ADD KEY `id_compra` (`id_compra`),
+  ADD KEY `id_pedido` (`id_pedido`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `albumes`
+--
+ALTER TABLE `albumes`
+  MODIFY `codigo_album` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT de la tabla `cliente`
+--
+ALTER TABLE `cliente`
+  MODIFY `codigo_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `descuento`
+--
+ALTER TABLE `descuento`
+  MODIFY `id_descuento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT de la tabla `envios`
+--
+ALTER TABLE `envios`
+  MODIFY `id_envios` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `pedidos`
+--
+ALTER TABLE `pedidos`
+  MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `tarjetas`
+--
+ALTER TABLE `tarjetas`
+  MODIFY `id_tarjeta` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `ventas`
+--
+ALTER TABLE `ventas`
+  MODIFY `id_compra` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `cliente_tarjeta`
+--
+ALTER TABLE `cliente_tarjeta`
+  ADD CONSTRAINT `codigo_tarjeta` FOREIGN KEY (`id_tarjeta`) REFERENCES `tarjetas` (`id_tarjeta`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `id_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `cliente` (`codigo_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `envio_pedido`
+--
+ALTER TABLE `envio_pedido`
+  ADD CONSTRAINT `envio` FOREIGN KEY (`id_envio`) REFERENCES `envios` (`id_envios`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `pedido` FOREIGN KEY (`id_pedido`) REFERENCES `pedidos` (`id_pedido`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `imagen_album`
+--
+ALTER TABLE `imagen_album`
+  ADD CONSTRAINT `id_album` FOREIGN KEY (`id_album`) REFERENCES `albumes` (`codigo_album`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `id_img` FOREIGN KEY (`id_imagen`) REFERENCES `imagenes` (`id_imagen`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `imagen_cliente`
+--
+ALTER TABLE `imagen_cliente`
+  ADD CONSTRAINT `id_cliente` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`codigo_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `id_imagen` FOREIGN KEY (`id_imagen`) REFERENCES `imagenes` (`id_imagen`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `transporte_envio`
+--
+ALTER TABLE `transporte_envio`
+  ADD CONSTRAINT `id_envio` FOREIGN KEY (`id_envio`) REFERENCES `envios` (`id_envios`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `placa_transporte` FOREIGN KEY (`placa_transporte`) REFERENCES `transporte` (`placa`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `venta_descuento`
+--
+ALTER TABLE `venta_descuento`
+  ADD CONSTRAINT `codigo_compra` FOREIGN KEY (`id_compra`) REFERENCES `ventas` (`id_compra`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `codigo_descuento` FOREIGN KEY (`id_descuento`) REFERENCES `descuento` (`id_descuento`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `venta_pedido`
+--
+ALTER TABLE `venta_pedido`
+  ADD CONSTRAINT `codigo_album` FOREIGN KEY (`codigo_album`) REFERENCES `albumes` (`codigo_album`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `codigo_usuario` FOREIGN KEY (`codigo_usuario`) REFERENCES `cliente` (`codigo_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `id_compra` FOREIGN KEY (`id_compra`) REFERENCES `ventas` (`id_compra`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `id_pedido` FOREIGN KEY (`id_pedido`) REFERENCES `pedidos` (`id_pedido`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

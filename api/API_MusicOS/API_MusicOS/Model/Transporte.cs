@@ -2,12 +2,12 @@
 {
     public class Transporte
     {
-        private String placa = string.Empty;
-        private String conductor = string.Empty;
-        private String estado = string.Empty;
+        private string placa = string.Empty;
+        private string conductor = string.Empty;
+        private string estado = string.Empty;
 
-        public String Placa { get =>  placa; set => placa = value; }
-        public String Conductor { get => conductor; set => conductor = value; }
-        public String Estado { get => estado; set => estado = value; }
+        public string Placa { get =>  placa; set => placa = value; }
+        public string Conductor { get => conductor; set => conductor = value; }
+        public string Estado { get => estado; set => estado = value; }
     }
 }

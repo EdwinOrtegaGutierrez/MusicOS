@@ -3,9 +3,9 @@
     public class Imagenes
     {
         private int id_imagen = 0;
-        private String ruta = string.Empty;
+        private string ruta = string.Empty;
 
         public int ID_Imagen {  get => id_imagen; set => id_imagen = value; }
-        public String Ruta { get => ruta; set => ruta = value; }
+        public string Ruta { get => ruta; set => ruta = value; }
     }
 }

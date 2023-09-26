@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\edwin\\source\\repos\\API_MusicOS\\API_MusicOS\\API_MusicOS.csproj": {}
+    "C:\\Users\\edwin\\OneDrive\\Escritorio\\MusicOS\\api\\API_MusicOS\\API_MusicOS\\API_MusicOS.csproj": {}
   },
   "projects": {
-    "C:\\Users\\edwin\\source\\repos\\API_MusicOS\\API_MusicOS\\API_MusicOS.csproj": {
+    "C:\\Users\\edwin\\OneDrive\\Escritorio\\MusicOS\\api\\API_MusicOS\\API_MusicOS\\API_MusicOS.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\edwin\\source\\repos\\API_MusicOS\\API_MusicOS\\API_MusicOS.csproj",
+        "projectUniqueName": "C:\\Users\\edwin\\OneDrive\\Escritorio\\MusicOS\\api\\API_MusicOS\\API_MusicOS\\API_MusicOS.csproj",
         "projectName": "API_MusicOS",
-        "projectPath": "C:\\Users\\edwin\\source\\repos\\API_MusicOS\\API_MusicOS\\API_MusicOS.csproj",
+        "projectPath": "C:\\Users\\edwin\\OneDrive\\Escritorio\\MusicOS\\api\\API_MusicOS\\API_MusicOS\\API_MusicOS.csproj",
         "packagesPath": "C:\\Users\\edwin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\edwin\\source\\repos\\API_MusicOS\\API_MusicOS\\obj\\",
+        "outputPath": "C:\\Users\\edwin\\OneDrive\\Escritorio\\MusicOS\\api\\API_MusicOS\\API_MusicOS\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\edwin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -44,9 +44,21 @@
               "target": "Package",
               "version": "[7.0.10, )"
             },
+            "MySql.Data": {
+              "target": "Package",
+              "version": "[8.1.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.5.0, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[7.0.0, )"
             }
           },
           "imports": [
