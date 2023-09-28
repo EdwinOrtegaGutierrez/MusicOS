@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v7.0": {
       "API_MusicOS/1.0.0": {
         "dependencies": {
+          "Google.Apis": "1.62.1",
           "Microsoft.AspNetCore.OpenApi": "7.0.10",
           "MySql.Data": "8.1.0",
           "Newtonsoft.Json": "13.0.3",
@@ -16,6 +17,28 @@
         },
         "runtime": {
           "API_MusicOS.dll": {}
+        }
+      },
+      "Google.Apis/1.62.1": {
+        "dependencies": {
+          "Google.Apis.Core": "1.62.1"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Google.Apis.dll": {
+            "assemblyVersion": "1.62.1.0",
+            "fileVersion": "1.62.1.0"
+          }
+        }
+      },
+      "Google.Apis.Core/1.62.1": {
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.3"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Google.Apis.Core.dll": {
+            "assemblyVersion": "1.62.1.0",
+            "fileVersion": "1.62.1.0"
+          }
         }
       },
       "Google.Protobuf/3.21.9": {
@@ -427,6 +450,20 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "Google.Apis/1.62.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-gfCyrCkJkxin/CTtxZN6quHQ4jF+JudHOcZoYsJgyROu8cEijTx1rf+JZW2/Z/Tl6F6Paxuq6JKZi5rijIni8A==",
+      "path": "google.apis/1.62.1",
+      "hashPath": "google.apis.1.62.1.nupkg.sha512"
+    },
+    "Google.Apis.Core/1.62.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-pW+nxHMDjmr8wVy4vA1EqA3fZ+ZNAr25u1cT45aYFzHg4KmaXhIOoscB2F8ZwtnHIqTo387ZeQfGQomNLi4pFA==",
+      "path": "google.apis.core/1.62.1",
+      "hashPath": "google.apis.core.1.62.1.nupkg.sha512"
     },
     "Google.Protobuf/3.21.9": {
       "type": "package",

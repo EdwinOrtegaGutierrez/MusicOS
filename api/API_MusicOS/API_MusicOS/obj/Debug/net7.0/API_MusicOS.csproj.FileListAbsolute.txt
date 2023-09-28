@@ -60,3 +60,5 @@ C:\Users\edwin\OneDrive\Escritorio\MusicOS\api\API_MusicOS\API_MusicOS\obj\Debug
 C:\Users\edwin\OneDrive\Escritorio\MusicOS\api\API_MusicOS\API_MusicOS\obj\Debug\net7.0\API_MusicOS.pdb
 C:\Users\edwin\OneDrive\Escritorio\MusicOS\api\API_MusicOS\API_MusicOS\obj\Debug\net7.0\API_MusicOS.genruntimeconfig.cache
 C:\Users\edwin\OneDrive\Escritorio\MusicOS\api\API_MusicOS\API_MusicOS\obj\Debug\net7.0\ref\API_MusicOS.dll
+C:\Users\edwin\OneDrive\Escritorio\MusicOS\api\API_MusicOS\API_MusicOS\bin\Debug\net7.0\Google.Apis.dll
+C:\Users\edwin\OneDrive\Escritorio\MusicOS\api\API_MusicOS\API_MusicOS\bin\Debug\net7.0\Google.Apis.Core.dll
