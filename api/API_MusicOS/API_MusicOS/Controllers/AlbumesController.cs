@@ -10,30 +10,6 @@ namespace API_MusicOS.Controllers
     [ApiController]
     public class AlbumesController : ControllerBase
     {
-        /*
-            #Principales Generos
-            @app.route('/Principales_Generos')
-            def Principales_Generos():
-                #Se conecta
-                connection = mariadb.connect(**conn_params) # AHUEVO
-                cursor= connection.cursor()
-    
-                cursor.execute(f"CALL principales_generos;")
-                rows = cursor.fetchall() # AHUEVO
-    
-                # Get column names
-                headers = [desc[0] for desc in cursor.description] # OPCIONAL | SEA DIC
-                # Create a list of dictionaries
-                result = []
-                for row in rows: result.append(dict(zip(headers, row)))
-    
-                # Free resources
-                cursor.close() # AHUEVO
-                connection.close() # AHUEVO
-                return result
-
-         */
-
         [HttpGet]
         [Route("Categorias")]
         public dynamic Get([FromQuery] string token)
@@ -89,7 +65,6 @@ namespace API_MusicOS.Controllers
                 return new { Success = false, Message = "Invalid Token" };
 
         }
-
 
         [HttpGet]
         [Route("Mas_Vendidos")]
@@ -148,6 +123,5 @@ namespace API_MusicOS.Controllers
             else
                 return new { Success = false, Message = "Invalid Token" };
         }
-
     }
 }

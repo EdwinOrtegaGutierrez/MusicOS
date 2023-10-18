@@ -11,6 +11,7 @@ import { AboutUsComponent } from './routes/about-us/about-us.component';
 import { GenerosComponent } from './routes/generos/generos.component';
 import { StoreGenerosComponent } from './routes/store/store-generos/store-generos.component';
 import { TestComponent } from './components/test/test.component';
+import { LoginComponent } from './routes/login/login.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { TestComponent } from './components/test/test.component';
     AboutUsComponent,
     GenerosComponent,
     StoreGenerosComponent,
-    TestComponent
+    TestComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

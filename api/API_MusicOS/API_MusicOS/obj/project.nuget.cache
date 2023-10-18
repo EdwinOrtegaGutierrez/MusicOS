@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "WFi0veVY1jsusfltT1xPDszD9BOsDkRhzte6HXOH1Jc0+7QBMQ+hEokXj9+MUbf5+UF6YCo414ial2w8DhAxyQ==",
+  "dgSpecHash": "ittLQV4hLFlSwHvnYXV8hGhbFsU9Egui2ojHvnvpKjCzLo3fUT+VnDrVOxeGw1+9q62tshAFXrjEB3CDMnLDDw==",
   "success": true,
   "projectFilePath": "C:\\Users\\edwin\\OneDrive\\Escritorio\\MusicOS\\api\\API_MusicOS\\API_MusicOS\\API_MusicOS.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,7 @@
     "C:\\Users\\edwin\\.nuget\\packages\\google.apis.auth\\1.62.1\\google.apis.auth.1.62.1.nupkg.sha512",
     "C:\\Users\\edwin\\.nuget\\packages\\google.apis.auth.mvc\\1.62.0\\google.apis.auth.mvc.1.62.0.nupkg.sha512",
     "C:\\Users\\edwin\\.nuget\\packages\\google.apis.core\\1.62.1\\google.apis.core.1.62.1.nupkg.sha512",
+    "C:\\Users\\edwin\\.nuget\\packages\\google.apis.plus.v1\\1.49.0.1627\\google.apis.plus.v1.1.49.0.1627.nupkg.sha512",
     "C:\\Users\\edwin\\.nuget\\packages\\google.protobuf\\3.21.9\\google.protobuf.3.21.9.nupkg.sha512",
     "C:\\Users\\edwin\\.nuget\\packages\\k4os.compression.lz4\\1.3.5\\k4os.compression.lz4.1.3.5.nupkg.sha512",
     "C:\\Users\\edwin\\.nuget\\packages\\k4os.compression.lz4.streams\\1.3.5\\k4os.compression.lz4.streams.1.3.5.nupkg.sha512",

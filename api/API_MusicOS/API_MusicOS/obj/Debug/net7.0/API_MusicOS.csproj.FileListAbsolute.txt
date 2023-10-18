@@ -62,3 +62,14 @@ C:\Users\edwin\OneDrive\Escritorio\MusicOS\api\API_MusicOS\API_MusicOS\obj\Debug
 C:\Users\edwin\OneDrive\Escritorio\MusicOS\api\API_MusicOS\API_MusicOS\obj\Debug\net7.0\ref\API_MusicOS.dll
 C:\Users\edwin\OneDrive\Escritorio\MusicOS\api\API_MusicOS\API_MusicOS\bin\Debug\net7.0\Google.Apis.dll
 C:\Users\edwin\OneDrive\Escritorio\MusicOS\api\API_MusicOS\API_MusicOS\bin\Debug\net7.0\Google.Apis.Core.dll
+C:\Users\edwin\OneDrive\Escritorio\MusicOS\api\API_MusicOS\API_MusicOS\bin\Debug\net7.0\Google.Apis.Auth.PlatformServices.dll
+C:\Users\edwin\OneDrive\Escritorio\MusicOS\api\API_MusicOS\API_MusicOS\bin\Debug\net7.0\Google.Apis.Auth.dll
+C:\Users\edwin\OneDrive\Escritorio\MusicOS\api\API_MusicOS\API_MusicOS\bin\Debug\net7.0\Google.Apis.Auth.Mvc.dll
+C:\Users\edwin\OneDrive\Escritorio\MusicOS\api\API_MusicOS\API_MusicOS\bin\Debug\net7.0\Google.Apis.Plus.v1.dll
+C:\Users\edwin\OneDrive\Escritorio\MusicOS\api\API_MusicOS\API_MusicOS\bin\Debug\net7.0\System.Web.Mvc.dll
+C:\Users\edwin\OneDrive\Escritorio\MusicOS\api\API_MusicOS\API_MusicOS\bin\Debug\net7.0\System.Web.Razor.dll
+C:\Users\edwin\OneDrive\Escritorio\MusicOS\api\API_MusicOS\API_MusicOS\bin\Debug\net7.0\System.Web.Helpers.dll
+C:\Users\edwin\OneDrive\Escritorio\MusicOS\api\API_MusicOS\API_MusicOS\bin\Debug\net7.0\System.Web.WebPages.Deployment.dll
+C:\Users\edwin\OneDrive\Escritorio\MusicOS\api\API_MusicOS\API_MusicOS\bin\Debug\net7.0\System.Web.WebPages.Razor.dll
+C:\Users\edwin\OneDrive\Escritorio\MusicOS\api\API_MusicOS\API_MusicOS\bin\Debug\net7.0\System.Web.WebPages.dll
+C:\Users\edwin\OneDrive\Escritorio\MusicOS\api\API_MusicOS\API_MusicOS\bin\Debug\net7.0\Microsoft.Web.Infrastructure.dll

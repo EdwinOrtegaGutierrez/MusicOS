@@ -70,6 +70,23 @@
           }
         }
       },
+      "Google.Apis.Plus.v1/1.49.0.1627": {
+        "type": "package",
+        "dependencies": {
+          "Google.Apis": "1.49.0",
+          "Google.Apis.Auth": "1.49.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Google.Apis.Plus.v1.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Google.Apis.Plus.v1.dll": {
+            "related": ".pdb;.xml"
+          }
+        }
+      },
       "Google.Protobuf/3.21.9": {
         "type": "package",
         "compile": {
@@ -966,6 +983,33 @@
         "lib/netstandard2.0/Google.Apis.Core.dll",
         "lib/netstandard2.0/Google.Apis.Core.pdb",
         "lib/netstandard2.0/Google.Apis.Core.xml"
+      ]
+    },
+    "Google.Apis.Plus.v1/1.49.0.1627": {
+      "sha512": "dakqOUguAqEs19F1qfQcSpFIxZZFZhkUAieNrFhpPoDXXo03Tw8QbpDplpHoUzESR0UGq/Ho+3W7ltzjf9k1GQ==",
+      "type": "package",
+      "path": "google.apis.plus.v1/1.49.0.1627",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "google.apis.plus.v1.1.49.0.1627.nupkg.sha512",
+        "google.apis.plus.v1.nuspec",
+        "lib/net40/Google.Apis.Plus.v1.dll",
+        "lib/net40/Google.Apis.Plus.v1.pdb",
+        "lib/net40/Google.Apis.Plus.v1.xml",
+        "lib/net45/Google.Apis.Plus.v1.dll",
+        "lib/net45/Google.Apis.Plus.v1.pdb",
+        "lib/net45/Google.Apis.Plus.v1.xml",
+        "lib/netstandard1.0/Google.Apis.Plus.v1.dll",
+        "lib/netstandard1.0/Google.Apis.Plus.v1.pdb",
+        "lib/netstandard1.0/Google.Apis.Plus.v1.xml",
+        "lib/netstandard1.3/Google.Apis.Plus.v1.dll",
+        "lib/netstandard1.3/Google.Apis.Plus.v1.pdb",
+        "lib/netstandard1.3/Google.Apis.Plus.v1.xml",
+        "lib/netstandard2.0/Google.Apis.Plus.v1.dll",
+        "lib/netstandard2.0/Google.Apis.Plus.v1.pdb",
+        "lib/netstandard2.0/Google.Apis.Plus.v1.xml"
       ]
     },
     "Google.Protobuf/3.21.9": {
@@ -2768,6 +2812,7 @@
       "Google.Apis >= 1.62.1",
       "Google.Apis.Auth >= 1.62.1",
       "Google.Apis.Auth.Mvc >= 1.62.0",
+      "Google.Apis.Plus.v1 >= 1.49.0.1627",
       "Microsoft.AspNetCore.OpenApi >= 7.0.10",
       "MySql.Data >= 8.1.0",
       "Newtonsoft.Json >= 13.0.3",
@@ -2825,6 +2870,10 @@
           "Google.Apis.Auth.Mvc": {
             "target": "Package",
             "version": "[1.62.0, )"
+          },
+          "Google.Apis.Plus.v1": {
+            "target": "Package",
+            "version": "[1.49.0.1627, )"
           },
           "Microsoft.AspNetCore.OpenApi": {
             "target": "Package",
