@@ -1,10 +1,17 @@
 import { Component } from '@angular/core';
 import { ImportJsService } from '../../service/Import-js/import-js.service';
+import { MusicosApiService } from '../../service/api/musicos-api.service';
 
 interface GalleryIcon{
     id: number,
     name: string,
     icon: string
+}
+
+interface Album {
+    titulo: string;
+    genero: string;
+    total_De_Ventas: string;
 }
 
 @Component({
@@ -15,9 +22,26 @@ interface GalleryIcon{
 })
 export class HomeComponent {
 
-    constructor(private _CarouselJSService: ImportJsService)
+    // Variable que podras consumir en el HTML
+    bestSellers: Album[] = [];
+    topGenres: Album[] = [];
+
+    constructor(private _CarouselJSService: ImportJsService, private musicosApiService: MusicosApiService)
     {
         _CarouselJSService.Carga(["Carousel/carousel"]);
+    }
+
+    ngOnInit(): void{
+        this.masVendidos();
+        this.principalesGeneros();
+    }
+
+    masVendidos(){
+        this.musicosApiService.masVendidos().subscribe(_masVendidos => { this.bestSellers = _masVendidos.albumes; });
+    }
+
+    principalesGeneros(){
+        this.musicosApiService.principalesGeneros().subscribe(_principalesGeneros => { this.topGenres = _principalesGeneros.albumes });
     }
 
     generosIcon: GalleryIcon[] = [

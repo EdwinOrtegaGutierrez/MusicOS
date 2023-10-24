@@ -12,31 +12,24 @@ namespace API_MusicOS.Controllers
     {
         [HttpGet]
         [Route("Categorias")]
-        public dynamic Get([FromQuery] string token)
+        public dynamic Get()
         {
-            bool validToken = new JwtToken().IsTokenValid(token);
-            if (validToken)
+            // Get para consumir status de alta
+            try
             {
-                // Get para consumir status de alta
-                try
-                {
-                    var generos = JsonConvert.DeserializeObject<List<Albumes>>(new Query().Get("CALL Categorias;"))?.Select(album => album.Genero).ToList() ?? new List<string>();
+                var generos = JsonConvert.DeserializeObject<List<Albumes>>(new Query().Get("CALL Categorias;"))?.Select(album => album.Genero).ToList() ?? new List<string>();
 
-                    return new
-                    {
-                        Success = true,
-                        Generos = generos
-                    };
-
-                }
-                catch (Exception ex)
+                return new
                 {
-                    return new { Success = false, Message = $"Error: {ex.Message}" };
-                }
+                    Success = true,
+                    Generos = generos
+                };
+
             }
-            else
-                return new { Success = false, Message = "Invalid Token" };
-
+            catch (Exception ex)
+            {
+                return new { Success = false, Message = $"Error: {ex.Message}" };
+            }   
         }
 
         [HttpGet]
@@ -68,60 +61,48 @@ namespace API_MusicOS.Controllers
 
         [HttpGet]
         [Route("Mas_Vendidos")]
-        public dynamic Get_Vendidos([FromQuery] string token)
+        public dynamic Get_Vendidos()
         {
-            bool validToken = new JwtToken().IsTokenValid(token);
-            if (validToken)
+            // Get para consumir status de alta
+            try
             {
-                // Get para consumir status de alta
-                try
-                {
-                    // Proyecta los campos deseados (fecha_Salida y titulo)
-                    var albumes = JsonConvert.DeserializeObject<List<Albumes>>(new Query().Get("Mas_Vendidos", ""))?.Select(a => new { a.Titulo, a.Total_De_Ventas }).ToList();
+                // Proyecta los campos deseados (fecha_Salida y titulo)
+                var albumes = JsonConvert.DeserializeObject<List<Albumes>>(new Query().Get("Mas_Vendidos", ""))?.Select(a => new { a.Titulo, a.Total_De_Ventas }).ToList();
 
-                    return new
-                    {
-                        Success = true,
-                        albumes
-                    };
-
-                }
-                catch (Exception ex)
+                return new
                 {
-                    return new { Success = false, Message = $"Error: {ex.Message}" };
-                }
+                    Success = true,
+                    albumes
+                };
+
             }
-            else
-                return new { Success = false, Message = "Invalid Token" };
+            catch (Exception ex)
+            {
+                return new { Success = false, Message = $"Error: {ex.Message}" };
+            }
         }
 
         [HttpGet]
         [Route("Principales_Generos")]
-        public dynamic Get_Principales([FromQuery] string token)
+        public dynamic Get_Principales()
         {
-            bool validToken = new JwtToken().IsTokenValid(token);
-            if (validToken)
+            // Get para consumir status de alta
+            try
             {
-                // Get para consumir status de alta
-                try
-                {
-                    // Proyecta los campos deseados (fecha_Salida y titulo)
-                    var albumes = JsonConvert.DeserializeObject<List<Albumes>>(new Query().Get("Principales_Generos", ""))?.Select(a => new { a.Genero, a.Total_De_Ventas }).ToList();
+                // Proyecta los campos deseados (fecha_Salida y titulo)
+                var albumes = JsonConvert.DeserializeObject<List<Albumes>>(new Query().Get("Principales_Generos", ""))?.Select(a => new { a.Genero, a.Total_De_Ventas }).ToList();
 
-                    return new
-                    {
-                        Success = true,
-                        albumes
-                    };
-
-                }
-                catch (Exception ex)
+                return new
                 {
-                    return new { Success = false, Message = $"Error: {ex.Message}" };
-                }
+                    Success = true,
+                    albumes
+                };
+
             }
-            else
-                return new { Success = false, Message = "Invalid Token" };
+            catch (Exception ex)
+            {
+                return new { Success = false, Message = $"Error: {ex.Message}" };
+            }
         }
     }
 }

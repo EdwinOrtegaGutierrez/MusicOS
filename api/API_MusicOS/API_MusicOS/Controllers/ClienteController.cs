@@ -12,9 +12,9 @@ namespace API_MusicOS.Controllers
     [ApiController]
     public class ClienteController : ControllerBase
     {
-        [HttpPut]
+        [HttpPost]
         [Route("Create_Client")]
-        public dynamic Put([FromBody] Cliente cliente)
+        public dynamic Post([FromBody] Cliente cliente)
         {
             try
             {
@@ -32,8 +32,9 @@ namespace API_MusicOS.Controllers
 
         [HttpGet]
         [Route("Login")]
-        public dynamic Get([FromBody] Cliente cliente)
+        public dynamic Get(string correo, string contraseña)
         {
+            Cliente cliente = new() { Correo = correo, Contraseña = contraseña };
 
             dynamic userData = new Query().Get("Login_Usuario", $"('{cliente.Correo}', '{cliente.Contraseña}')");
             bool isUser = (JsonConvert.DeserializeObject<dynamic>(userData)?[0].UserExists == 1);

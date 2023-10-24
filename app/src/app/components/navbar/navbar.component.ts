@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ImportJsService } from '../../service/Import-js/import-js.service';
+import { MusicosApiService } from '../../service/api/musicos-api.service';
 
 interface ContactIcon {
   description: string;
@@ -13,7 +14,7 @@ interface ContactIcon {
   providers: [ ImportJsService ]
 })
 export class NavbarComponent {
-  constructor(private _NavbarJsService: ImportJsService)
+  constructor(private _NavbarJsService: ImportJsService, private musicosApiService: MusicosApiService)
   {
     _NavbarJsService.Carga(["navbar/navbar"]);
   }
@@ -47,16 +48,19 @@ export class NavbarComponent {
     // Obtener los valores de los campos de email y contraseña
     const email = await this.getValueAndTrim("emailAccess");
     const password = await this.getValueAndTrim("passwordAccess");
-  
+
     // Verificar si los campos están vacíos o inexistentes
     if (!email || !password) {
       console.error("Error al iniciar sesión, por favor verifica los campos");
       return;
     }
-  
+    
     // Realizar aquí la lógica para iniciar sesión
-    console.table({ "email": email, "password": password });
-    console.log("Iniciar sesión con:", email, password);
+    this.musicosApiService.loginCliente(email, password).subscribe(response => {
+      console.log('Respuesta:', response);
+    }, error => {
+      console.error('Error:', error);
+    });
   }   
 
   async validarRegistro(){
