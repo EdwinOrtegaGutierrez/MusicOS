@@ -6,7 +6,7 @@ namespace API_MusicOS.Resource
 {
     public class Database
     {
-        string Connectivity { get; } = "server=127.0.0.1;uid=root;pwd=;database=musicOS";
+        string Connectivity { get; } = "server=127.0.0.1,3307;uid=root;pwd=;database=musicOS";
 
 
         // Function to execute queries, takes them as inputs, and returns a list of objects from the resulting query: [{...}]

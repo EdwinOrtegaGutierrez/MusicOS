@@ -11,13 +11,7 @@ import { AboutUsComponent } from './routes/about-us/about-us.component';
 import { GenerosComponent } from './routes/generos/generos.component';
 import { StoreGenerosComponent } from './routes/store/store-generos/store-generos.component';
 import { TestComponent } from './components/test/test.component';
-<<<<<<< HEAD
-import { CarritoComponent } from './routes/carrito/carrito.component';
-import { AjustesComponent } from './routes/ajustes/ajustes.component';
-
-=======
 import { LoginComponent } from './routes/login/login.component';
->>>>>>> f3586fbf7414fbda098a16485543b57588b120c6
 
 
 @NgModule({
@@ -31,13 +25,7 @@ import { LoginComponent } from './routes/login/login.component';
     GenerosComponent,
     StoreGenerosComponent,
     TestComponent,
-<<<<<<< HEAD
-    CarritoComponent,
-    AjustesComponent,
-    NavbarComponent,
-=======
     LoginComponent
->>>>>>> f3586fbf7414fbda098a16485543b57588b120c6
   ],
   imports: [
     BrowserModule,

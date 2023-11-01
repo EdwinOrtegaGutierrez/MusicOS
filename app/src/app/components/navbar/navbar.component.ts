@@ -14,6 +14,8 @@ interface ContactIcon {
   providers: [ ImportJsService ]
 })
 export class NavbarComponent {
+  isLoggedIn: boolean = false;
+
   constructor(private _NavbarJsService: ImportJsService, private musicosApiService: MusicosApiService)
   {
     _NavbarJsService.Carga(["navbar/navbar"]);
@@ -58,6 +60,7 @@ export class NavbarComponent {
     // Realizar aquí la lógica para iniciar sesión
     this.musicosApiService.loginCliente(email, password).subscribe(response => {
       console.log('Respuesta:', response);
+      this.isLoggedIn = true; 
     }, error => {
       console.error('Error:', error);
     });

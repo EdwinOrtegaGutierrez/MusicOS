@@ -1,5 +1,5 @@
 <header>
-    <nav class="navbar navbar-dark navbar-expand-lg bg-dark" data-bs-theme="dark">
+    <nav *ngIf="isLoggedIn" class="navbar navbar-dark navbar-expand-lg bg-dark" data-bs-theme="dark">
         <div class="container-fluid">
             <a class="navbar-brand" href=""> <p class="h4">MusicOS</p></a>
 
@@ -60,6 +60,44 @@
         </div>
     </nav>
 
+    <nav *ngIf="!isLoggedIn" class="navbar navbar-dark navbar-expand-lg bg-dark" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href=""> <p class="h4">MusicOS</p></a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span><img src="../../assets/img/navbar/menu.png" width="25" height="25" style="filter: brightness(0) invert(1);"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav navbar-center me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">    
+                        <a class="navbar-item fw-bold fs-5" href="#">
+                            <input class="form-control me-5" type="search" placeholder="Buscar" aria-label="Search"> <!--Este es el cambio-->
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/" style="text-transform: uppercase;">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/store" style="text-transform: uppercase;">Tienda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about-us" style="text-transform: uppercase;">Nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="modal" data-bs-target="#contactanos" style="text-transform: uppercase; cursor: pointer;">Contactanos</a>
+                    </li>
+                </ul>    
+                <form class="d-flex" role="login">
+                    <!-- Button trigger modal -->
+                    <button type="button" class="form-control me-2 btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" style="text-transform: uppercase;">
+                        Acceder | Registrarse
+                    </button>
+                </form>
+            </div>
+        </div>
+    </nav>
 </header>
 
 <!-- Modal ACCEDER | REGISTRARSE -->
@@ -101,13 +139,8 @@
                             <input type="password" class="form-control" id="vpasswordSingUp" placeholder="Validar contraseña" required>
                         </div>
                         <div class="col-auto text-center">
+
                             <button type="submit" class="btn btn-danger" id="registrar" (click)="validarRegistro()">Registrar</button>
-                        </div>
-                    </div>
-                    <div style="margin-top: 25px;">
-                        <h6 class="text-center text-uppercase display-6">Inicia sesión con Google</h6>
-                        <div class="col-auto text-center">
-                            <button type="submit" class="btn-google" id="google"><img src="../../assets/img/social/google.png" alt="Logo Google" width="50"></button>
                         </div>
                     </div>
                 </div>
@@ -132,3 +165,4 @@
         </div>
     </div>
 </div>
+
