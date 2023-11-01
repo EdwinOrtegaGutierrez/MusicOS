@@ -146,7 +146,7 @@ CREATE TABLE IF NOT EXISTS `envio_pedido` (
 -- Volcando estructura para tabla musicos.imagenes
 CREATE TABLE IF NOT EXISTS `imagenes` (
   `id_imagen` int(11) NOT NULL,
-  `ruta` varchar(50) DEFAULT NULL,
+  `ruta` blob DEFAULT NULL,
   PRIMARY KEY (`id_imagen`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

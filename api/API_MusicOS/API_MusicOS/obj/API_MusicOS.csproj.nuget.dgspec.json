@@ -40,6 +40,22 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "Google.Apis": {
+              "target": "Package",
+              "version": "[1.62.1, )"
+            },
+            "Google.Apis.Auth": {
+              "target": "Package",
+              "version": "[1.62.1, )"
+            },
+            "Google.Apis.Auth.Mvc": {
+              "target": "Package",
+              "version": "[1.62.0, )"
+            },
+            "Google.Apis.Plus.v1": {
+              "target": "Package",
+              "version": "[1.49.0.1627, )"
+            },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[7.0.10, )"

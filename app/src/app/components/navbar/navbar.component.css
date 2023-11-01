@@ -102,8 +102,32 @@
             background-color: #b30000;
         }
     }
+<<<<<<< HEAD
 
 } 
 
 
 
+=======
+} 
+
+.btn-google{
+    background-color: transparent;
+    border: none;
+    border-radius: 25px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 1rem 2rem;
+    transition: all 0.2s ease;
+
+    &:focus {
+        outline: none;
+    }
+    
+    &:hover {
+        background-color: #d8d8d827;
+    }
+}
+>>>>>>> f3586fbf7414fbda098a16485543b57588b120c6

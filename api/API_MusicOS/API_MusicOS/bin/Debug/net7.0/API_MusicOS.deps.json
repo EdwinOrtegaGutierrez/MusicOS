@@ -8,6 +8,10 @@
     ".NETCoreApp,Version=v7.0": {
       "API_MusicOS/1.0.0": {
         "dependencies": {
+          "Google.Apis": "1.62.1",
+          "Google.Apis.Auth": "1.62.1",
+          "Google.Apis.Auth.Mvc": "1.62.0",
+          "Google.Apis.Plus.v1": "1.49.0.1627",
           "Microsoft.AspNetCore.OpenApi": "7.0.10",
           "MySql.Data": "8.1.0",
           "Newtonsoft.Json": "13.0.3",
@@ -16,6 +20,68 @@
         },
         "runtime": {
           "API_MusicOS.dll": {}
+        }
+      },
+      "Google.Apis/1.62.1": {
+        "dependencies": {
+          "Google.Apis.Core": "1.62.1"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Google.Apis.dll": {
+            "assemblyVersion": "1.62.1.0",
+            "fileVersion": "1.62.1.0"
+          }
+        }
+      },
+      "Google.Apis.Auth/1.62.1": {
+        "dependencies": {
+          "Google.Apis": "1.62.1",
+          "Google.Apis.Core": "1.62.1"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Google.Apis.Auth.PlatformServices.dll": {
+            "assemblyVersion": "1.62.1.0",
+            "fileVersion": "1.62.1.0"
+          },
+          "lib/netstandard2.0/Google.Apis.Auth.dll": {
+            "assemblyVersion": "1.62.1.0",
+            "fileVersion": "1.62.1.0"
+          }
+        }
+      },
+      "Google.Apis.Auth.Mvc/1.62.0": {
+        "dependencies": {
+          "Google.Apis.Auth": "1.62.1",
+          "Microsoft.AspNet.Mvc": "5.2.9"
+        },
+        "runtime": {
+          "lib/net45/Google.Apis.Auth.Mvc.dll": {
+            "assemblyVersion": "1.62.0.0",
+            "fileVersion": "1.62.0.0"
+          }
+        }
+      },
+      "Google.Apis.Core/1.62.1": {
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.3"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Google.Apis.Core.dll": {
+            "assemblyVersion": "1.62.1.0",
+            "fileVersion": "1.62.1.0"
+          }
+        }
+      },
+      "Google.Apis.Plus.v1/1.49.0.1627": {
+        "dependencies": {
+          "Google.Apis": "1.62.1",
+          "Google.Apis.Auth": "1.62.1"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Google.Apis.Plus.v1.dll": {
+            "assemblyVersion": "1.49.0.1627",
+            "fileVersion": "1.49.0.1627"
+          }
         }
       },
       "Google.Protobuf/3.21.9": {
@@ -52,6 +118,50 @@
           "lib/net6.0/K4os.Hash.xxHash.dll": {
             "assemblyVersion": "1.0.8.0",
             "fileVersion": "1.0.8.0"
+          }
+        }
+      },
+      "Microsoft.AspNet.Mvc/5.2.9": {
+        "dependencies": {
+          "Microsoft.AspNet.Razor": "3.2.9",
+          "Microsoft.AspNet.WebPages": "3.2.9"
+        },
+        "runtime": {
+          "lib/net45/System.Web.Mvc.dll": {
+            "assemblyVersion": "5.2.9.0",
+            "fileVersion": "5.2.61129.10"
+          }
+        }
+      },
+      "Microsoft.AspNet.Razor/3.2.9": {
+        "runtime": {
+          "lib/net45/System.Web.Razor.dll": {
+            "assemblyVersion": "3.0.0.0",
+            "fileVersion": "3.0.61129.10"
+          }
+        }
+      },
+      "Microsoft.AspNet.WebPages/3.2.9": {
+        "dependencies": {
+          "Microsoft.AspNet.Razor": "3.2.9",
+          "Microsoft.Web.Infrastructure": "1.0.0"
+        },
+        "runtime": {
+          "lib/net45/System.Web.Helpers.dll": {
+            "assemblyVersion": "3.0.0.0",
+            "fileVersion": "3.0.61129.10"
+          },
+          "lib/net45/System.Web.WebPages.Deployment.dll": {
+            "assemblyVersion": "3.0.0.0",
+            "fileVersion": "3.0.61129.10"
+          },
+          "lib/net45/System.Web.WebPages.Razor.dll": {
+            "assemblyVersion": "3.0.0.0",
+            "fileVersion": "3.0.61129.10"
+          },
+          "lib/net45/System.Web.WebPages.dll": {
+            "assemblyVersion": "3.0.0.0",
+            "fileVersion": "3.0.61129.10"
           }
         }
       },
@@ -115,6 +225,14 @@
           "lib/netstandard2.0/Microsoft.OpenApi.dll": {
             "assemblyVersion": "1.4.3.0",
             "fileVersion": "1.4.3.0"
+          }
+        }
+      },
+      "Microsoft.Web.Infrastructure/1.0.0": {
+        "runtime": {
+          "lib/net40/Microsoft.Web.Infrastructure.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.20105.407"
           }
         }
       },
@@ -428,6 +546,41 @@
       "serviceable": false,
       "sha512": ""
     },
+    "Google.Apis/1.62.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-gfCyrCkJkxin/CTtxZN6quHQ4jF+JudHOcZoYsJgyROu8cEijTx1rf+JZW2/Z/Tl6F6Paxuq6JKZi5rijIni8A==",
+      "path": "google.apis/1.62.1",
+      "hashPath": "google.apis.1.62.1.nupkg.sha512"
+    },
+    "Google.Apis.Auth/1.62.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-QXDes67ZURNIop9l/YVc0vP6lRAzwKOrKI4DrGQgG0mgyQle0xJm2CsJ/izpB/XJqOVrLQiCkopFEuKs7Cnstw==",
+      "path": "google.apis.auth/1.62.1",
+      "hashPath": "google.apis.auth.1.62.1.nupkg.sha512"
+    },
+    "Google.Apis.Auth.Mvc/1.62.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-/Wt07xmGD71F5N3twMXRNspe13QZSMWCRLVqOd2xymY2kFyh235E2SpveAmIdEg1dJnkG7JzoFOuj2X1AHovXQ==",
+      "path": "google.apis.auth.mvc/1.62.0",
+      "hashPath": "google.apis.auth.mvc.1.62.0.nupkg.sha512"
+    },
+    "Google.Apis.Core/1.62.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-pW+nxHMDjmr8wVy4vA1EqA3fZ+ZNAr25u1cT45aYFzHg4KmaXhIOoscB2F8ZwtnHIqTo387ZeQfGQomNLi4pFA==",
+      "path": "google.apis.core/1.62.1",
+      "hashPath": "google.apis.core.1.62.1.nupkg.sha512"
+    },
+    "Google.Apis.Plus.v1/1.49.0.1627": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-dakqOUguAqEs19F1qfQcSpFIxZZFZhkUAieNrFhpPoDXXo03Tw8QbpDplpHoUzESR0UGq/Ho+3W7ltzjf9k1GQ==",
+      "path": "google.apis.plus.v1/1.49.0.1627",
+      "hashPath": "google.apis.plus.v1.1.49.0.1627.nupkg.sha512"
+    },
     "Google.Protobuf/3.21.9": {
       "type": "package",
       "serviceable": true,
@@ -455,6 +608,27 @@
       "sha512": "sha512-Wp2F7BamQ2Q/7Hk834nV9vRQapgcr8kgv9Jvfm8J3D0IhDqZMMl+a2yxUq5ltJitvXvQfB8W6K4F4fCbw/P6YQ==",
       "path": "k4os.hash.xxhash/1.0.8",
       "hashPath": "k4os.hash.xxhash.1.0.8.nupkg.sha512"
+    },
+    "Microsoft.AspNet.Mvc/5.2.9": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-bcekKshCAh7kTWSMZPavQStSZQF/QmjEjO2gVWGITEd0/t5eRlb+ZLDE+az2qY1bZ8L6Hz0OCNeS0uzXtJcK5w==",
+      "path": "microsoft.aspnet.mvc/5.2.9",
+      "hashPath": "microsoft.aspnet.mvc.5.2.9.nupkg.sha512"
+    },
+    "Microsoft.AspNet.Razor/3.2.9": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-QOJEnEw3xp+t5lMvYR5nGCF4CfZpHqr2p8uZOBEgDZoB6r2txtSj6581YNr+/dOHjI3YRlo1QAKGQoSohbQ/KA==",
+      "path": "microsoft.aspnet.razor/3.2.9",
+      "hashPath": "microsoft.aspnet.razor.3.2.9.nupkg.sha512"
+    },
+    "Microsoft.AspNet.WebPages/3.2.9": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-yByb721lwv8YFsx1oKA5CLKXa89XVbVMkPafS4bg/bPelBEgChq/coFBQEkA4kwcabG7AR56w3vapnoZUfr2Cw==",
+      "path": "microsoft.aspnet.webpages/3.2.9",
+      "hashPath": "microsoft.aspnet.webpages.3.2.9.nupkg.sha512"
     },
     "Microsoft.AspNetCore.OpenApi/7.0.10": {
       "type": "package",
@@ -518,6 +692,13 @@
       "sha512": "sha512-rURwggB+QZYcSVbDr7HSdhw/FELvMlriW10OeOzjPT7pstefMo7IThhtNtDudxbXhW+lj0NfX72Ka5EDsG8x6w==",
       "path": "microsoft.openapi/1.4.3",
       "hashPath": "microsoft.openapi.1.4.3.nupkg.sha512"
+    },
+    "Microsoft.Web.Infrastructure/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-FNmvLn5m2LTU/Rs2KWVo0SIIh9Ek+U0ojex7xeDaSHw/zgEP77A8vY5cVWgUtBGS8MJfDGNn8rpXJWEIQaPwTg==",
+      "path": "microsoft.web.infrastructure/1.0.0",
+      "hashPath": "microsoft.web.infrastructure.1.0.0.nupkg.sha512"
     },
     "Microsoft.Win32.SystemEvents/4.7.0": {
       "type": "package",

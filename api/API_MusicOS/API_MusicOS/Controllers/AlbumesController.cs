@@ -10,73 +10,26 @@ namespace API_MusicOS.Controllers
     [ApiController]
     public class AlbumesController : ControllerBase
     {
-        /*
-            #Principales Generos
-            @app.route('/Principales_Generos')
-            def Principales_Generos():
-                #Se conecta
-                connection = mariadb.connect(**conn_params) # AHUEVO
-                cursor= connection.cursor()
-    
-                cursor.execute(f"CALL principales_generos;")
-                rows = cursor.fetchall() # AHUEVO
-    
-                # Get column names
-                headers = [desc[0] for desc in cursor.description] # OPCIONAL | SEA DIC
-                # Create a list of dictionaries
-                result = []
-                for row in rows: result.append(dict(zip(headers, row)))
-    
-                # Free resources
-                cursor.close() # AHUEVO
-                connection.close() # AHUEVO
-                return result
-
-            #Mas Vendidos
-            @app.route('/mas_ven')
-            def mas_ven():
-                connection = mariadb.connect(**conn_params)
-                cursor= connection.cursor() # AHUEVO
-                cursor.execute(f"CALL mas_vendidos;") # OPCIONAL
-                rows = cursor.fetchall()
-                # Get column names
-                headers = [desc[0] for desc in cursor.description] # OPCIONAL | SEA DIC
-                # Create a list of dictionaries
-                result = []
-                for row in rows: result.append(dict(zip(headers, row)))
-                # Free resources
-                cursor.close() # AHUEVO
-                connection.close() # AHUEVO
-                return result # AHUEVO
-         */
-
         [HttpGet]
-        [Route("categorias")]
-        public dynamic Get([FromQuery] string token)
+        [Route("Categorias")]
+        public dynamic Get()
         {
-            bool validToken = new JwtToken().IsTokenValid(token);
-            if (validToken)
+            // Get para consumir status de alta
+            try
             {
-                // Get para consumir status de alta
-                try
-                {
-                    var generos = JsonConvert.DeserializeObject<List<Albumes>>(new Query().Get("CALL categorias;"))?.Select(album => album.Genero).ToList() ?? new List<string>();
+                var generos = JsonConvert.DeserializeObject<List<Albumes>>(new Query().Get("CALL Categorias;"))?.Select(album => album.Genero).ToList() ?? new List<string>();
 
-                    return new
-                    {
-                        Success = true,
-                        Generos = generos
-                    };
-
-                }
-                catch (Exception ex)
+                return new
                 {
-                    return new { Success = false, Message = $"Error: {ex.Message}" };
-                }
+                    Success = true,
+                    Generos = generos
+                };
+
             }
-            else
-                return new { Success = false, Message = "Invalid Token" };
-
+            catch (Exception ex)
+            {
+                return new { Success = false, Message = $"Error: {ex.Message}" };
+            }   
         }
 
         [HttpGet]
@@ -104,6 +57,52 @@ namespace API_MusicOS.Controllers
             else
                 return new { Success = false, Message = "Invalid Token" };
 
+        }
+
+        [HttpGet]
+        [Route("Mas_Vendidos")]
+        public dynamic Get_Vendidos()
+        {
+            // Get para consumir status de alta
+            try
+            {
+                // Proyecta los campos deseados (fecha_Salida y titulo)
+                var albumes = JsonConvert.DeserializeObject<List<Albumes>>(new Query().Get("Mas_Vendidos", ""))?.Select(a => new { a.Titulo, a.Total_De_Ventas }).ToList();
+
+                return new
+                {
+                    Success = true,
+                    albumes
+                };
+
+            }
+            catch (Exception ex)
+            {
+                return new { Success = false, Message = $"Error: {ex.Message}" };
+            }
+        }
+
+        [HttpGet]
+        [Route("Principales_Generos")]
+        public dynamic Get_Principales()
+        {
+            // Get para consumir status de alta
+            try
+            {
+                // Proyecta los campos deseados (fecha_Salida y titulo)
+                var albumes = JsonConvert.DeserializeObject<List<Albumes>>(new Query().Get("Principales_Generos", ""))?.Select(a => new { a.Genero, a.Total_De_Ventas }).ToList();
+
+                return new
+                {
+                    Success = true,
+                    albumes
+                };
+
+            }
+            catch (Exception ex)
+            {
+                return new { Success = false, Message = $"Error: {ex.Message}" };
+            }
         }
     }
 }

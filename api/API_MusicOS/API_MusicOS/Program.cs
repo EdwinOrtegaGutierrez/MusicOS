@@ -7,6 +7,14 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Add Cors
+builder.Services.AddCors(options =>{
+    options.AddDefaultPolicy(b =>
+    {
+        b.WithOrigins("http://localhost:4200/").AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+    });
+});
+
 // Add Sessions configuration
 builder.Services.AddDistributedMemoryCache();
 
@@ -23,6 +31,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors();
 
 app.UseSession(); // Add this within the Configure method.
 
