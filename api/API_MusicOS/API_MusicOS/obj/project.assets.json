@@ -2474,19 +2474,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\edwin\\.nuget\\packages\\": {}
+    "C:\\Users\\Gaston\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\edwin\\OneDrive\\Escritorio\\MusicOS\\api\\API_MusicOS\\API_MusicOS\\API_MusicOS.csproj",
+      "projectUniqueName": "C:\\Users\\Gaston\\Desktop\\Gits\\MusicOS\\api\\API_MusicOS\\API_MusicOS\\API_MusicOS.csproj",
       "projectName": "API_MusicOS",
-      "projectPath": "C:\\Users\\edwin\\OneDrive\\Escritorio\\MusicOS\\api\\API_MusicOS\\API_MusicOS\\API_MusicOS.csproj",
-      "packagesPath": "C:\\Users\\edwin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\edwin\\OneDrive\\Escritorio\\MusicOS\\api\\API_MusicOS\\API_MusicOS\\obj\\",
+      "projectPath": "C:\\Users\\Gaston\\Desktop\\Gits\\MusicOS\\api\\API_MusicOS\\API_MusicOS\\API_MusicOS.csproj",
+      "packagesPath": "C:\\Users\\Gaston\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Gaston\\Desktop\\Gits\\MusicOS\\api\\API_MusicOS\\API_MusicOS\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\edwin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Gaston\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2552,7 +2552,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
       }
     }
   }

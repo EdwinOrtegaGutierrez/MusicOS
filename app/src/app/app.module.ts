@@ -11,6 +11,9 @@ import { AboutUsComponent } from './routes/about-us/about-us.component';
 import { GenerosComponent } from './routes/generos/generos.component';
 import { StoreGenerosComponent } from './routes/store/store-generos/store-generos.component';
 import { TestComponent } from './components/test/test.component';
+import { CarritoComponent } from './routes/carrito/carrito.component';
+import { AjustesComponent } from './routes/ajustes/ajustes.component';
+
 
 
 @NgModule({
@@ -23,7 +26,10 @@ import { TestComponent } from './components/test/test.component';
     AboutUsComponent,
     GenerosComponent,
     StoreGenerosComponent,
-    TestComponent
+    TestComponent,
+    CarritoComponent,
+    AjustesComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,

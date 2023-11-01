@@ -1,3 +1,7 @@
+.navbar-nav .nav-item {
+    margin-right: 20px; /* Añade margen derecho para aumentar el espacio entre elementos */
+}
+
 .col-der{
     border-right: 1px solid transparent;
 }
@@ -98,4 +102,8 @@
             background-color: #b30000;
         }
     }
+
 } 
+
+
+
