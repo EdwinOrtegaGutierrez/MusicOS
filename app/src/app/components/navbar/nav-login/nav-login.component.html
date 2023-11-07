@@ -1,0 +1,66 @@
+<nav class="navbar navbar-dark navbar-expand-lg bg-dark" data-bs-theme="dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href=""><p class="h4">MusicOS</p></a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span><img src="../../assets/img/navbar/menu.png" width="25" height="25" style="filter: brightness(0) invert(1);"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav navbar-center me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="navbar-item fw-bold fs-5" href="#">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <img src="../../assets/img/navbar/search.png" alt="Imagen" width="25" height="25" style="filter: brightness(0) invert(1);">
+                            </div>
+                            <input type="text" class="form-control" placeholder="Buscar..." aria-label="Search" aria-describedby="basic-addon1" style="margin-left: 5px;">
+                        </div>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="/" style="text-transform: uppercase;">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/store" style="text-transform: uppercase;">Tienda</a>
+                </li>
+                <li class="nav-item"> <!-- Este item es el icono del carrito -->
+                    <a class="navbar-item fw-bold fs-5" href="/carrito">
+                        <img src="../../assets/img/navbar/carrito.png" alt="carrito" width="25" height="25" style="filter: brightness(0) invert(1);">
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/about-us" style="text-transform: uppercase;">Nosotros</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="modal" data-bs-target="#contactanos" style="text-transform: uppercase; cursor: pointer;">Contactanos</a>
+                </li>
+
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/ajustes">
+                            <img src="../../assets/img/navbar/ajustes.png" alt="No jalo" width="25" height="25" style="filter: brightness(0) invert(1);">
+                        </a>
+                    </li>
+                </ul>
+            </ul>
+        </div>
+    </div>
+</nav>    
+
+<!-- MODAL CONOCENOS -->
+<div class="modal fade" id="contactanos" tabindex="1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header" data-bs-theme="dark">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h2 class="text-center text-uppercase display-4">Contactanos</h2>
+                <ng-container *ngFor="let icon of contactsIcons">
+                    <p class="h-6"><img class="icon-contacts" src="../../assets/img/contacts/{{icon.iconName}}" alt="{{icon.description}}"> {{icon.description}}</p>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</div>

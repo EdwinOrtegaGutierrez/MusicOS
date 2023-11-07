@@ -12,6 +12,8 @@ import { GenerosComponent } from './routes/generos/generos.component';
 import { StoreGenerosComponent } from './routes/store/store-generos/store-generos.component';
 import { TestComponent } from './components/test/test.component';
 import { LoginComponent } from './routes/login/login.component';
+import { NavLoginComponent } from './components/navbar/nav-login/nav-login.component';
+import { NavLogoutComponent } from './components/navbar/nav-logout/nav-logout.component';
 
 
 @NgModule({
@@ -25,7 +27,9 @@ import { LoginComponent } from './routes/login/login.component';
     GenerosComponent,
     StoreGenerosComponent,
     TestComponent,
-    LoginComponent
+    LoginComponent,
+    NavLoginComponent,
+    NavLogoutComponent
   ],
   imports: [
     BrowserModule,

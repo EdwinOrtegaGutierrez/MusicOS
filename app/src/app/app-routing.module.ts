@@ -4,6 +4,8 @@ import { HomeComponent } from './routes/home/home.component';
 import { StoreComponent } from './routes/store/store.component';
 import { StoreGenerosComponent } from './routes/store/store-generos/store-generos.component';
 import { AboutUsComponent } from './routes/about-us/about-us.component';
+import { CarritoComponent } from './routes/carrito/carrito.component';
+import { AjustesComponent } from './routes/ajustes/ajustes.component';
 
 const routes: Routes = [
   {
@@ -21,6 +23,14 @@ const routes: Routes = [
   {
     path:"about-us",
     component:AboutUsComponent
+  },
+  {
+    path:"carrito",
+    component:CarritoComponent
+  },
+  {
+    path:"ajustes",
+    component:AjustesComponent
   }
 ];
 
