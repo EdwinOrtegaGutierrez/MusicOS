@@ -55,6 +55,21 @@ BEGIN
 END//
 DELIMITER ;
 
+-- Volcando estructura para tabla musicos.carrito
+CREATE TABLE IF NOT EXISTS `carrito` (
+  `id_producto` int(11) NOT NULL,
+  `nombre_producto` varchar(50) NOT NULL,
+  `costo` float NOT NULL DEFAULT 0,
+  `cantidad` int(11) NOT NULL,
+  `subtotal` float NOT NULL,
+  KEY `id_producto` (`id_producto`),
+  CONSTRAINT `id_producto` FOREIGN KEY (`id_producto`) REFERENCES `albumes` (`codigo_album`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Volcando datos para la tabla musicos.carrito: ~0 rows (aproximadamente)
+/*!40000 ALTER TABLE `carrito` DISABLE KEYS */;
+/*!40000 ALTER TABLE `carrito` ENABLE KEYS */;
+
 -- Volcando estructura para procedimiento musicos.categorias
 DELIMITER //
 CREATE PROCEDURE `categorias`()
@@ -184,18 +199,23 @@ CREATE TABLE IF NOT EXISTS `imagen_cliente` (
 
 -- Volcando estructura para procedimiento musicos.Login_Usuario
 DELIMITER //
-CREATE PROCEDURE `Login_Usuario`(IN `user_correo` VARCHAR(50), IN `user_password` VARCHAR(50))
+CREATE PROCEDURE `Login_Usuario`(
+	IN `user_correo` VARCHAR(50),
+	IN `user_password` VARCHAR(50)
+)
 BEGIN
     DECLARE UserExists BOOLEAN;
-
+    DECLARE id INT;
     -- Verificar si el usuario existe en la tabla
     IF (SELECT 1 FROM cliente WHERE correo = user_correo AND contraseña = user_password) THEN
+    SELECT codigo_usuario INTO id FROM cliente WHERE correo = user_correo;
         SET UserExists = TRUE; -- Usuario encontrado (true)
+        SELECT UserExists, id;
     ELSE
         SET UserExists = FALSE; -- Usuario no encontrado (false)
+        SELECT UserExists;
     END IF;
 
-    SELECT UserExists;
 END//
 DELIMITER ;
 
