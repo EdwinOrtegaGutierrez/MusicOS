@@ -33,8 +33,9 @@ export class MusicosAuthLoginService {
     return [email, password];
   }
 
-  setUser(email: string, password: string){
+  setUser(email: string, password: string, id: number){
     document.cookie = `email=${email};`;
     document.cookie = `password=${password};`;
+    document.cookie = `id=${id}`;
   }
 }

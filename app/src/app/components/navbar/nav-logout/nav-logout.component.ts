@@ -44,21 +44,43 @@ export class NavLogoutComponent {
   }
 
   async validarRegistro(){
-    const userName = await this.getValueAndTrim("userName");
+    const name = await this.getValueAndTrim("userName");
+    const lastName = await this.getValueAndTrim("userLastName");
     const email = await this.getValueAndTrim("emailSingUp");
     const password = await this.getValueAndTrim("passwordSingUp");
-    const vPassword = await this.getValueAndTrim("vpasswordSingUp");
+    const valid_pw = await this.getValueAndTrim("vpasswordSingUp");
 
-    if (!userName || !email || !password || !vPassword){
-      console.error("Error al registrar, por favor verifica los campos");
+    if (!name || !lastName! || !email || !password || !valid_pw){
+      alert("Error al registrar, por favor verifica los campos");
       return;
     }
-    if (password !== vPassword) {
+    if (password !== valid_pw) {
         alert("Las contraseñas no coinciden");
         return; // Evita que el formulario se envíe si las contraseñas no coinciden
     }
-    console.log({ "usuario":userName, "email":email, "contraseña":password, "confirmacion":vPassword});
-    console.log("Registro con: ", userName, email, password, vPassword);
+
+    const body = {
+      "nombre": name,
+      "apellidos": lastName,
+      "correo": email,
+      "contraseña": password
+    }
+    
+    this.musicosApiService.createClient(body).subscribe( response => {
+        if(response.success === true){
+          this.musicosApiService.loginCliente(email, password).subscribe(response => {
+            let correo = response.user.correo;
+            let contraseña = response.user.contraseña;
+            let id = response.user.userId;
+            this.isLoggedIn = true; 
+            this.authLogin.setUser(correo, contraseña, id);
+            window.location.reload();
+          }, () => {
+            console.error('Error');
+          });
+        }
+      }
+    );
   }
 
   
@@ -75,9 +97,11 @@ export class NavLogoutComponent {
     
     // Realizar aquí la lógica para iniciar sesión
     this.musicosApiService.loginCliente(email, password).subscribe(response => {
-      console.log('Respuesta:', response);
+      let correo = response.user.correo;
+      let contraseña = response.user.contraseña;
+      let id = response.user.userId;
       this.isLoggedIn = true; 
-      this.authLogin.setUser(email, password);
+      this.authLogin.setUser(correo, contraseña, id);
       window.location.reload();
     }, () => {
       console.error('Error');

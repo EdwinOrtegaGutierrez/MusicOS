@@ -54,5 +54,37 @@ namespace API_MusicOS.Resource
                 return $"Error MySQL: {ex.Message}";
             }
         }
+
+        // Método para guardar una imagen en la base de datos
+        public void SaveImageToDatabase(byte[] imageBytes)
+        {
+            using MySqlConnection connection = new(Connectivity);
+            
+            //
+            using MySqlCommand command = new();
+            command.Connection = connection;
+            command.CommandText = $"INSERT INTO imagenes (ruta) VALUES (@image)";
+            command.Parameters.Add("@image", MySqlDbType.Blob).Value = imageBytes;
+
+            command.ExecuteNonQuery();
+        }
+
+        // Método para recuperar una imagen de la base de datos
+        public byte[]? RetrieveImageFromDatabase()
+        {
+            using MySqlConnection connection = new(Connectivity);
+            using MySqlCommand command = new();
+            command.Connection = connection;
+            command.CommandText = $"SELECT ruta FROM imagenes";
+
+            using MySqlDataReader reader = command.ExecuteReader();
+            if (reader.Read())
+            {
+                // Asegúrate de manejar adecuadamente los nulos si la columna permite valores nulos
+                if (!reader.IsDBNull(0))
+                    return (byte[])reader["ruta"];
+            }
+            return null;
+        }
     }
 }
