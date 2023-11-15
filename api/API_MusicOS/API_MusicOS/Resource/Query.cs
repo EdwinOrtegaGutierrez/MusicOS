@@ -11,6 +11,7 @@ namespace API_MusicOS.Resource
         public string Categorias() { return "CALL Categorias"; }
         public string Mas_Vendidos() { return "CALL Mas_Vendidos"; }
         public string Principales_Generos() { return "CALL Principales_Generos"; }
+        public string Select() { return "SELECT"; }
 
         public string Get(string query) => new Database().GetInformation(query);
         public string Get(string method, dynamic query)

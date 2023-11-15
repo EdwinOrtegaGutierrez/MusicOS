@@ -16,4 +16,13 @@
         public string Contraseña { get => contraseña; set => contraseña = value; }
         public string Estado { get => estado; set => estado = value; }
     }
+
+    public class ClienteLogin
+    {
+        private bool userExists = false;
+        private int id = 0;
+
+        public bool UserExists { get => userExists; set => userExists = value; }
+        public int Id { get => id; set => id = value; }
+    }
 }

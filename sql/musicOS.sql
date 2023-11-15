@@ -49,11 +49,36 @@ INSERT INTO `albumes` (`autor`, `fecha_salida`, `titulo`, `num_canciones`, `codi
 
 -- Volcando estructura para procedimiento musicos.Albumes_Categorias
 DELIMITER //
-CREATE PROCEDURE `Albumes_Categorias`(IN `p_genero` VARCHAR(255))
+CREATE PROCEDURE `Albumes_Categorias`(
+	IN `p_genero` VARCHAR(255)
+)
 BEGIN
-    SELECT * FROM albumes WHERE genero = p_genero;
+    SELECT albumes.autor, albumes.fecha_salida, albumes.titulo, albumes.num_canciones, albumes.canciones, albumes.genero, albumes.precio, imagenes.peu FROM albumes
+    INNER JOIN imagen_album ON albumes.codigo_album = imagen_album.id_album
+    INNER JOIN imagenes ON imagen_album.id_album = albumes.codigo_album
+    WHERE genero = p_genero;
 END//
 DELIMITER ;
+
+-- Volcando estructura para tabla musicos.carrito
+CREATE TABLE IF NOT EXISTS `carrito` (
+  `id_producto` int(11) NOT NULL,
+  `nombre_producto` varchar(50) NOT NULL,
+  `costo` float NOT NULL DEFAULT 0,
+  `cantidad` int(11) NOT NULL,
+  `subtotal` float NOT NULL,
+  `id_cliente` int(11) DEFAULT NULL,
+  KEY `id_producto` (`id_producto`),
+  KEY `id_client` (`id_cliente`),
+  CONSTRAINT `id_client` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`codigo_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `id_producto` FOREIGN KEY (`id_producto`) REFERENCES `albumes` (`codigo_album`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Volcando datos para la tabla musicos.carrito: ~1 rows (aproximadamente)
+/*!40000 ALTER TABLE `carrito` DISABLE KEYS */;
+INSERT INTO `carrito` (`id_producto`, `nombre_producto`, `costo`, `cantidad`, `subtotal`, `id_cliente`) VALUES
+	(6, 'agaree', 1000, 1, 1000, 2);
+/*!40000 ALTER TABLE `carrito` ENABLE KEYS */;
 
 -- Volcando estructura para procedimiento musicos.categorias
 DELIMITER //
@@ -147,11 +172,14 @@ CREATE TABLE IF NOT EXISTS `envio_pedido` (
 CREATE TABLE IF NOT EXISTS `imagenes` (
   `id_imagen` int(11) NOT NULL,
   `ruta` blob DEFAULT NULL,
+  `peu` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id_imagen`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla musicos.imagenes: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla musicos.imagenes: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `imagenes` DISABLE KEYS */;
+INSERT INTO `imagenes` (`id_imagen`, `ruta`, `peu`) VALUES
+	(1, NULL, 'hola');
 /*!40000 ALTER TABLE `imagenes` ENABLE KEYS */;
 
 -- Volcando estructura para tabla musicos.imagen_album
@@ -164,8 +192,10 @@ CREATE TABLE IF NOT EXISTS `imagen_album` (
   CONSTRAINT `id_img` FOREIGN KEY (`id_imagen`) REFERENCES `imagenes` (`id_imagen`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla musicos.imagen_album: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla musicos.imagen_album: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `imagen_album` DISABLE KEYS */;
+INSERT INTO `imagen_album` (`id_album`, `id_imagen`) VALUES
+	(6, 1);
 /*!40000 ALTER TABLE `imagen_album` ENABLE KEYS */;
 
 -- Volcando estructura para tabla musicos.imagen_cliente
@@ -178,24 +208,31 @@ CREATE TABLE IF NOT EXISTS `imagen_cliente` (
   CONSTRAINT `id_imagen` FOREIGN KEY (`id_imagen`) REFERENCES `imagenes` (`id_imagen`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla musicos.imagen_cliente: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla musicos.imagen_cliente: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `imagen_cliente` DISABLE KEYS */;
+INSERT INTO `imagen_cliente` (`id_cliente`, `id_imagen`) VALUES
+	(1, 1);
 /*!40000 ALTER TABLE `imagen_cliente` ENABLE KEYS */;
 
 -- Volcando estructura para procedimiento musicos.Login_Usuario
 DELIMITER //
-CREATE PROCEDURE `Login_Usuario`(IN `user_correo` VARCHAR(50), IN `user_password` VARCHAR(50))
+CREATE PROCEDURE `Login_Usuario`(
+	IN `user_correo` VARCHAR(50),
+	IN `user_password` VARCHAR(50)
+)
 BEGIN
     DECLARE UserExists BOOLEAN;
-
+    DECLARE id INT;
     -- Verificar si el usuario existe en la tabla
     IF (SELECT 1 FROM cliente WHERE correo = user_correo AND contraseña = user_password) THEN
+    SELECT codigo_usuario INTO id FROM cliente WHERE correo = user_correo;
         SET UserExists = TRUE; -- Usuario encontrado (true)
+        SELECT UserExists, id;
     ELSE
         SET UserExists = FALSE; -- Usuario no encontrado (false)
+        SELECT UserExists;
     END IF;
 
-    SELECT UserExists;
 END//
 DELIMITER ;
 
@@ -270,6 +307,16 @@ CREATE TABLE IF NOT EXISTS `transporte_envio` (
 -- Volcando datos para la tabla musicos.transporte_envio: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `transporte_envio` DISABLE KEYS */;
 /*!40000 ALTER TABLE `transporte_envio` ENABLE KEYS */;
+
+-- Volcando estructura para procedimiento musicos.usuario_carrito
+DELIMITER //
+CREATE PROCEDURE `usuario_carrito`(
+	IN `id` INT
+)
+BEGIN
+SELECT * FROM carrito WHERE id = id_cliente;
+END//
+DELIMITER ;
 
 -- Volcando estructura para tabla musicos.ventas
 CREATE TABLE IF NOT EXISTS `ventas` (

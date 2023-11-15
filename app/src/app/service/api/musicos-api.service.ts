@@ -11,6 +11,8 @@ export class MusicosApiService {
   private categoriasUrl = "http://localhost:5094/api/Albumes/categorias";
   private masVendidosUrl = "http://localhost:5094/api/Albumes/Mas_Vendidos";
   private principalesGenerosUrl = "http://localhost:5094/api/Albumes/Principales_Generos";
+  private createClientUrl = "http://localhost:5094/api/Cliente/Create_Client";
+
   constructor(private http: HttpClient) { }
   
   // Método GET
@@ -28,5 +30,11 @@ export class MusicosApiService {
 
   principalesGeneros(): Observable<any>{
     return this.http.get<any>(this.principalesGenerosUrl);
+  }
+
+  // Método POST
+  createClient(body: any): Observable<any>{
+    const headers = { 'Content-Type': 'application/json'}
+    return this.http.post<any>(this.createClientUrl, body, {'headers':headers});
   }
 }

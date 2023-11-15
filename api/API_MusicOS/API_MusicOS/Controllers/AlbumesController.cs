@@ -34,29 +34,21 @@ namespace API_MusicOS.Controllers
 
         [HttpGet]
         [Route("Albumes_Categorias")]
-        public dynamic Get([FromQuery] string token, string categoria)
+        public dynamic Get([FromQuery]string categoria)
         {
-            bool validToken = new JwtToken().IsTokenValid(token);
-            if (validToken)
+            // Get para consumir status de alta
+            try
             {
-                // Get para consumir status de alta
-                try
+                return new
                 {
-                    return new
-                    {
-                        Success = true,
-                        Albumes = JsonConvert.DeserializeObject<List<Albumes>>(new Query().Get("Albumes_Categorias", $"('{categoria}')"))
+                    Success = true,
+                    Albumes = JsonConvert.DeserializeObject<List<Albumes>>(new Query().Get("Albumes_Categorias", $"('{categoria}')"))
                 };
-
-                }
-                catch (Exception ex)
-                {
-                    return new { Success = false, Message = $"Error: {ex.Message}" };
-                }
             }
-            else
-                return new { Success = false, Message = "Invalid Token" };
-
+            catch (Exception ex)
+            {
+                return new { Success = false, Message = $"Error: {ex.Message}" };
+            }
         }
 
         [HttpGet]

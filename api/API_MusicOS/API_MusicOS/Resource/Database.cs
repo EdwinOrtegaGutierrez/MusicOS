@@ -6,7 +6,7 @@ namespace API_MusicOS.Resource
 {
     public class Database
     {
-        string Connectivity { get; } = "server=127.0.0.1,3307;uid=root;pwd=;database=musicOS";
+        string Connectivity { get; } = "server=127.0.0.1;uid=root;pwd=;database=musicOS";
 
 
         // Function to execute queries, takes them as inputs, and returns a list of objects from the resulting query: [{...}]
@@ -53,6 +53,38 @@ namespace API_MusicOS.Resource
                 // Return Error SQL
                 return $"Error MySQL: {ex.Message}";
             }
+        }
+
+        // Método para guardar una imagen en la base de datos
+        public void SaveImageToDatabase(byte[] imageBytes)
+        {
+            using MySqlConnection connection = new(Connectivity);
+            
+            //
+            using MySqlCommand command = new();
+            command.Connection = connection;
+            command.CommandText = $"INSERT INTO imagenes (ruta) VALUES (@image)";
+            command.Parameters.Add("@image", MySqlDbType.Blob).Value = imageBytes;
+
+            command.ExecuteNonQuery();
+        }
+
+        // Método para recuperar una imagen de la base de datos
+        public byte[]? RetrieveImageFromDatabase()
+        {
+            using MySqlConnection connection = new(Connectivity);
+            using MySqlCommand command = new();
+            command.Connection = connection;
+            command.CommandText = $"SELECT ruta FROM imagenes";
+
+            using MySqlDataReader reader = command.ExecuteReader();
+            if (reader.Read())
+            {
+                // Asegúrate de manejar adecuadamente los nulos si la columna permite valores nulos
+                if (!reader.IsDBNull(0))
+                    return (byte[])reader["ruta"];
+            }
+            return null;
         }
     }
 }

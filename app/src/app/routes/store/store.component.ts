@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { TestApiService } from 'src/app/service/api/test-api.service';
 import { ImportJsService } from 'src/app/service/Import-js/import-js.service';
 import { MusicosApiService } from '../../service/api/musicos-api.service';
+import { ItemCarrito } from './ItemCarrito';
+
 
 @Component({
   selector: 'app-store',
@@ -15,6 +17,7 @@ export class StoreComponent {
   categories: any[] = [];
   testProducts: any[] = [];
   testCategory: any[] = [];
+  item = this.testProducts;
 
   constructor(private testApiService: TestApiService, private _storeJs: ImportJsService, private musicosApiService: MusicosApiService)
   {
@@ -44,8 +47,10 @@ export class StoreComponent {
     });
   }
 
-  /*agrega items a la tabla del carrito
-  agregarCarrito(item: testProducts){
+  //agrega items a la tabla del carrito
+  
+  agregarCarrito(item: any){
+    if (item && item.idproducto && item.nombre && item.precio) {
     let iCarrito : ItemCarrito = {
       idproducto: item.idproducto,
       nombre: item.nombre,
@@ -53,7 +58,7 @@ export class StoreComponent {
       cantidad: 1
     }
 
-    **Agrega al localStorage el item del carrito al que se le clickeo 
+    //Agrega al localStorage el item del carrito al que se le clickeo 
     if(localStorage.getItem("carrito") === null){
       let carrito: ItemCarrito[] = [];
       carrito.push(iCarrito);
@@ -63,16 +68,16 @@ export class StoreComponent {
       let carritoStorage = localStorage.getItem("carrito") as string;
       let carrito = JSON.parse(carritoStorage);
       
-      let index = -1:
+      let index = -1;
       for(let i = 0; i<carrito.length; i++){
         let itemC: ItemCarrito = carrito[i];
-        if(iCarrito.idproducto = itemC,idproducto){
+        if(iCarrito.idproducto === itemC.idproducto){
           index = i;
           break;
         }
       }
       
-      **Si se clickea mas de una vez el mismo producto lo suma en una sola linea
+      //Si se clickea mas de una vez el mismo producto lo suma en una sola linea
       if(index === -1){
         carrito.push(iCarrito);
         localStorage.setItem("carrito", JSON.stringify(carrito));
@@ -81,18 +86,8 @@ export class StoreComponent {
         let itemCarrito: ItemCarrito = carrito[index];
         itemCarrito.cantidad!++;
         carrito[index] = itemCarrito;
-        localStorage.setItem("carrito, JSON.stringify(carrito");
+        localStorage.setItem("carrito", JSON.stringify(carrito));
       }
-    }
-
-
-
-    /*ItemCarrito.ts
-      export class ItemCarrito {
-        idproducto: string | undefined;
-        nombre: string | undefined;
-        precio: number | undefined;
-        cantidad: number | undefined;
-      }
-    */
+    }   
   }
+}}
