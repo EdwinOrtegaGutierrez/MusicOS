@@ -12,4 +12,20 @@ export class CarritoComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /*
+  export class CarritoComponent {
+    listaItemsCarrito: ItemCarrito[] | undeined;
+
+    ngOnInit(): void{
+      let carritoStorage = localStorage.getItem("carrito") as string;
+      let carrito = JSON.parse(carritoStorage);
+      this.listaItemsCarrito = carrito
+    }
+  }
+
+  vaciarCarrito(){
+    localStorage.clear();
+    listaItemsCarrito = [];
+  }
+  */
 }

@@ -43,4 +43,56 @@ export class StoreComponent {
       this.testCategory = testCategory; 
     });
   }
-}
+
+  /*agrega items a la tabla del carrito
+  agregarCarrito(item: testProducts){
+    let iCarrito : ItemCarrito = {
+      idproducto: item.idproducto,
+      nombre: item.nombre,
+      precio: item.precio,
+      cantidad: 1
+    }
+
+    **Agrega al localStorage el item del carrito al que se le clickeo 
+    if(localStorage.getItem("carrito") === null){
+      let carrito: ItemCarrito[] = [];
+      carrito.push(iCarrito);
+      localStorage.setItem("carrito", JSON.stringify(carrito));
+    }
+    else{
+      let carritoStorage = localStorage.getItem("carrito") as string;
+      let carrito = JSON.parse(carritoStorage);
+      
+      let index = -1:
+      for(let i = 0; i<carrito.length; i++){
+        let itemC: ItemCarrito = carrito[i];
+        if(iCarrito.idproducto = itemC,idproducto){
+          index = i;
+          break;
+        }
+      }
+      
+      **Si se clickea mas de una vez el mismo producto lo suma en una sola linea
+      if(index === -1){
+        carrito.push(iCarrito);
+        localStorage.setItem("carrito", JSON.stringify(carrito));
+      }
+      else{
+        let itemCarrito: ItemCarrito = carrito[index];
+        itemCarrito.cantidad!++;
+        carrito[index] = itemCarrito;
+        localStorage.setItem("carrito, JSON.stringify(carrito");
+      }
+    }
+
+
+
+    /*ItemCarrito.ts
+      export class ItemCarrito {
+        idproducto: string | undefined;
+        nombre: string | undefined;
+        precio: number | undefined;
+        cantidad: number | undefined;
+      }
+    */
+  }

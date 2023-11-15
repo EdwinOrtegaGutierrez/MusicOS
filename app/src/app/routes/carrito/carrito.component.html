@@ -1,12 +1,25 @@
 <main data-bs-theme="dark" style="background-color: #282c34;" id="page-content">
-
-    <div class="content" >    
-        <div class="text-light bg-img">
-            <div class="container-box container">
-                <h1 class="display-3 text-uppercase">Si funcioné tlacua</h1>
-                <p class="lead">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam hic laboriosam asperiores libero.</p>
-            </div>
-        </div>
-    </div>
     
+    <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Subtotal</th>
+            </tr>
+        </thead>
+
+        <tbody>
+        <!-- <tr ngFor="let item of listaItemsCarrito">
+            <td>{{item.idproducto}}<</td>
+            <td>{{item.nombre}}</td>
+            <td>{{item.precio | number: ".2"}}</td>
+            <td>{{item.cantidad}}</td>
+            <td>{{item.cantidad! * item.precio! | number: ".2"}}</td>
+        </tr> -->
+        </tbody>
+    </table>
+    <!-- <button class="btn btn-danger" (click)="vaciarCarrito()">Vaciar carrito</button> -->
 </main>
