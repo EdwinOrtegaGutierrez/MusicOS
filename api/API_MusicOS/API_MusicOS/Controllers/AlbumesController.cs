@@ -11,6 +11,26 @@ namespace API_MusicOS.Controllers
     public class AlbumesController : ControllerBase
     {
         [HttpGet]
+        [Route("Albumes")]
+        public dynamic Get_Albumes()
+        {
+            try
+            {
+                var albumes = JsonConvert.DeserializeObject<List<Albumes>>(new Query().Get("SELECT *, num_ventas AS total_De_Ventas FROM albumes;"));
+
+                return new
+                {
+                    Success = true,
+                    Albumes = albumes
+                };
+            }
+            catch (Exception ex) 
+            {
+                return new { Success = false, Message = $"Error: {ex.Message}" };
+            }
+        }
+
+        [HttpGet]
         [Route("Categorias")]
         public dynamic Get()
         {
@@ -59,7 +79,7 @@ namespace API_MusicOS.Controllers
             try
             {
                 // Proyecta los campos deseados (fecha_Salida y titulo)
-                var albumes = JsonConvert.DeserializeObject<List<Albumes>>(new Query().Get("Mas_Vendidos", ""))?.Select(a => new { a.Titulo, a.Total_De_Ventas }).ToList();
+                var albumes = JsonConvert.DeserializeObject<List<Albumes>>(new Query().Get("Mas_Vendidos", ""))?.Select(a => new { a.Codigo_Album, a.Titulo, a.Total_De_Ventas }).ToList();
 
                 return new
                 {
@@ -82,7 +102,7 @@ namespace API_MusicOS.Controllers
             try
             {
                 // Proyecta los campos deseados (fecha_Salida y titulo)
-                var albumes = JsonConvert.DeserializeObject<List<Albumes>>(new Query().Get("Principales_Generos", ""))?.Select(a => new { a.Genero, a.Total_De_Ventas }).ToList();
+                var albumes = JsonConvert.DeserializeObject<List<Albumes>>(new Query().Get("Principales_Generos", ""))?.Select(a => new { a.Codigo_Album, a.Genero, a.Total_De_Ventas }).ToList();
 
                 return new
                 {

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { TestApiService } from 'src/app/service/api/test-api.service';
 import { ImportJsService } from 'src/app/service/Import-js/import-js.service';
 import { MusicosApiService } from '../../service/api/musicos-api.service';
 import { ItemCarrito } from './ItemCarrito';
@@ -15,11 +14,12 @@ import { ItemCarrito } from './ItemCarrito';
 export class StoreComponent {
   // Variable que podras consumir en el HTML
   categories: any[] = [];
-  testProducts: any[] = [];
+  albumProducts: any[] = [];
   testCategory: any[] = [];
-  item = this.testProducts;
+  item = this.albumProducts;
+  imageUrl: string = "http://localhost:5094/api/Images/getImage/";
 
-  constructor(private testApiService: TestApiService, private _storeJs: ImportJsService, private musicosApiService: MusicosApiService)
+  constructor(private _storeJs: ImportJsService, private musicosApiService: MusicosApiService)
   {
     _storeJs.Carga(["store/store"]);
   }
@@ -28,7 +28,6 @@ export class StoreComponent {
     this.categorias();
     // FUNCIONES DE PRUEBA, ELIMINARLAS CUANDO HAYAN CONCLUIDO LAS PRUEBAS
     this.getProductsJson();
-    this.getCategoriesJson();
   }
 
   categorias(){
@@ -36,20 +35,18 @@ export class StoreComponent {
   }
 
   getProductsJson(){
-    this.testApiService.getProducts().subscribe(testProducts => {
-      this.testProducts = testProducts;
+    this.musicosApiService.albumes().subscribe(products => {
+      this.albumProducts = products.albumes;
     });
-  }
-
-  getCategoriesJson(){
-    this.testApiService.getCategories().subscribe(testCategory => {
-      this.testCategory = testCategory; 
-    });
+    console.log(this.albumProducts);
   }
 
   //agrega items a la tabla del carrito
   
   agregarCarrito(item: any){
+    // {}, [{}, {}], [0].Cout, {} == null
+    // this.item.length != 0
+
     if (item && item.idproducto && item.nombre && item.precio) {
     let iCarrito : ItemCarrito = {
       idproducto: item.idproducto,

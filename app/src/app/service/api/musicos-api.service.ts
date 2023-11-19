@@ -12,6 +12,11 @@ export class MusicosApiService {
   private masVendidosUrl = "http://localhost:5094/api/Albumes/Mas_Vendidos";
   private principalesGenerosUrl = "http://localhost:5094/api/Albumes/Principales_Generos";
   private createClientUrl = "http://localhost:5094/api/Cliente/Create_Client";
+  private albumesUrl = "http://localhost:5094/api/Albumes/Albumes";
+  private albumImageUrl = "localhost:5094/api/Images/getImage/";
+  private albumCategoriesUrl = "http://localhost:5094/api/Albumes/Albumes_Categorias?categoria";
+
+  imageSrc: string | ArrayBuffer | null = null;
 
   constructor(private http: HttpClient) { }
   
@@ -30,6 +35,19 @@ export class MusicosApiService {
 
   principalesGeneros(): Observable<any>{
     return this.http.get<any>(this.principalesGenerosUrl);
+  }
+
+  albumes(): Observable<any> {
+    return this.http.get<any>(this.albumesUrl);
+  }
+
+  albumImage(id: number): Observable<any>{
+    
+    return this.http.get<any>(this.albumImageUrl+id);
+  }
+
+  albumCategories(category: string){
+    return this.http.get<any>(this.albumCategoriesUrl+`=${category}`);
   }
 
   // Método POST

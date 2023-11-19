@@ -29,9 +29,9 @@ namespace API_MusicOS.Resource
                 return JsonConvert.SerializeObject(dataTable);
             }
             catch (Exception ex) { 
-                    return $"ERROR: {ex.Message}";
-                }
+                return $"ERROR: {ex.Message}";
             }
+        }
 
         public string SetInformation(string query)
         {

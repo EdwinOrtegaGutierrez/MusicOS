@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ImportJsService } from 'src/app/service/Import-js/import-js.service';
 import { TestApiService } from 'src/app/service/api/test-api.service';
+import { MusicosApiService } from 'src/app/service/api/musicos-api.service';
 
 @Component({
   selector: 'app-store-generos',
@@ -9,10 +10,11 @@ import { TestApiService } from 'src/app/service/api/test-api.service';
   providers:[ ImportJsService ]
 })
 export class StoreGenerosComponent {
-  testCategory: any[] = [];
-  testProductsByCategory: any[] = [];
+  categories: any[] = [];
+  albumes: any[] = [];
+  imageUrl: string = "http://localhost:5094/api/Images/getImage/";
 
-  constructor(private _storeJs: ImportJsService, private testApiService: TestApiService){
+  constructor(private _storeJs: ImportJsService, private testApiService: TestApiService, private musicosApiService: MusicosApiService){
     _storeJs.Carga(["store/store"]);
   }
 
@@ -22,17 +24,15 @@ export class StoreGenerosComponent {
   }
   
   getCategoriesJson(){
-    this.testApiService.getCategories().subscribe(testCategory => {
-      this.testCategory = testCategory; 
-    });
+    this.musicosApiService.categorias().subscribe(_categorias => { this.categories = _categorias.generos; });
   }
 
   getProductsByCategoryJson(){
     var url = window.location.pathname;
     var parts = url.split('/');
     var category = parts[parts.length - 1];
-    this.testApiService.getProductsByCategory(category).subscribe(testProductsByCategory => {
-      this.testProductsByCategory = testProductsByCategory;
+    this.musicosApiService.albumCategories(category.toLowerCase()).subscribe(albumes => {
+      this.albumes = albumes.albumes;
     });
   }
 }

@@ -65,22 +65,24 @@
     object-fit: cover;
 }
 
-.product h2, .product p, .product .price {
+.small-bottom{
+    margin-bottom: 10px;
+}
+
+.subtitle{
+    color:#7c4dff7a;
+}
+
+small{
+    margin-left: 10px;
+    color: #79797a;
+}
+.display-6 {
     margin: 10px;
-    color: #fff;
-}
-
-.product h2 {
-    font-size: 1.2rem;
-}
-
-.product p {
-    font-size: 1rem;
-}
-
-.product .price {
-    font-weight: bold;
-    font-size: 1.2rem;
+    font-size: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 /* Estilos para el toggle-sidebar */

@@ -14,14 +14,21 @@
             <button class="toggle-sidebar mx-auto display-6">Ver Categorías</button>
         </div>
         <div class="products">
-            <ng-container *ngFor="let test of testProducts">
-                <div class="product">
-                    <img loading="lazy" src="{{test.image}}" alt="Imagen producto">
-                    <h2>{{test.title}}</h2>
+            <ng-container *ngFor="let album of albumProducts">
+                <div class="product" id="product-{{album.codigo_Album}}">
+                    <img loading="lazy" [src]="imageUrl+album.codigo_Album" alt="Imagen producto">
+                    <h2 class="display-6 text-center">{{album.titulo}}</h2>
+                    <p class="text-center">{{album.autor}} • {{album.total_De_Ventas}} M de ventas</p>
+                    <small class="subtitle">Canciones</small>
+                    <small>{{album.canciones}}</small>
+                    <small class="subtitle">Género</small> 
+                    <small>{{album.genero}}</small>
+                    <small class="subtitle">Fecha de salida</small> 
+                    <small>{{ album.fecha_Salida | date:'yyyy-MM-dd' }}</small>
+                    <small class="subtitle">Precio</small>
+                    <small class="small-bottom">${{album.precio}}</small>
                 </div>                    
             </ng-container>
-
-            <i class="bi bi-basket" (click)="agregarCarrito(item)"></i>
         </div>
     </div>
 </section>

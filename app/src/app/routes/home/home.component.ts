@@ -2,13 +2,8 @@ import { Component } from '@angular/core';
 import { ImportJsService } from '../../service/Import-js/import-js.service';
 import { MusicosApiService } from '../../service/api/musicos-api.service';
 
-interface GalleryIcon{
-    id: number,
-    name: string,
-    icon: string
-}
-
 interface Album {
+    codigo_Album: number,
     titulo: string;
     genero: string;
     total_De_Ventas: string;
@@ -24,7 +19,8 @@ export class HomeComponent {
 
     // Variable que podras consumir en el HTML
     bestSellers: Album[] = [];
-    topGenres: Album[] = [];
+    topGeneres: Album[] = [];
+    imageUrl: string = "http://localhost:5094/api/Images/getImage/";
 
     constructor(private _CarouselJSService: ImportJsService, private musicosApiService: MusicosApiService)
     {
@@ -41,62 +37,6 @@ export class HomeComponent {
     }
 
     principalesGeneros(){
-        this.musicosApiService.principalesGeneros().subscribe(_principalesGeneros => { this.topGenres = _principalesGeneros.albumes });
+        this.musicosApiService.principalesGeneros().subscribe(_principalesGeneros => { this.topGeneres = _principalesGeneros.albumes });
     }
-
-    generosIcon: GalleryIcon[] = [
-        {
-            id: 1,
-            name: "electronica",
-            icon: "electronica.png"
-        },
-        {
-            id: 2,
-            name: "pop",
-            icon: "pop.png"
-        },
-        {
-            id: 3,
-            name: "rock",
-            icon: "rock.png"
-        },
-        {
-            id: 4,
-            name: "hiphop",
-            icon: "hiphop.png"
-        },
-        {
-            id: 5,
-            name: "jazz",
-            icon: "jazz.png"
-        }
-    ];
-
-    vendidosIcon: GalleryIcon[] = [
-        {
-            id: 1,
-            name: "electronica",
-            icon: "lemons.png"
-        },
-        {
-            id: 2,
-            name: "pop",
-            icon: "sour.png"
-        },
-        {
-            id: 3,
-            name: "rock",
-            icon: "backInBlack.png"
-        },
-        {
-            id: 4,
-            name: "hiphop",
-            icon: "myBeautifulDarkTwistedFantasy.png"
-        },
-        {
-            id: 5,
-            name: "jazz",
-            icon: "kindOfBlue.png"
-        }
-    ];
 }
