@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MusicosApiService } from 'src/app/service/api/musicos-api.service';
 import { MusicosAuthLoginService } from 'src/app/service/api/musicos-auth-login.service';
+import { OAuthService } from 'angular-oauth2-oidc';
 
 interface ContactIcon {
   description: string;
@@ -16,7 +17,7 @@ interface ContactIcon {
 export class NavLogoutComponent {
   isLoggedIn: boolean | undefined;
     
-  constructor(private musicosApiService: MusicosApiService, private authLogin: MusicosAuthLoginService){}
+  constructor(private musicosApiService: MusicosApiService, private authLogin: MusicosAuthLoginService, private oauthService: OAuthService){}
 
   // Contacts Icons
   contactsIcons: ContactIcon[] = [
@@ -37,6 +38,20 @@ export class NavLogoutComponent {
       iconName: "phone.png"
     }
   ];
+
+  loginWithGoogle() {
+    this.oauthService.initImplicitFlow();
+  }
+
+  logout() {
+    this.oauthService.logOut();
+  }
+
+  getUserInfo() {
+    const claims = this.oauthService.getIdentityClaims();
+    // Aquí puedes acceder a los datos del usuario
+    console.log(claims);
+  }
 
   async getValueAndTrim(elementId: string) {
     const inputElement = document.getElementById(elementId) as HTMLInputElement | null;

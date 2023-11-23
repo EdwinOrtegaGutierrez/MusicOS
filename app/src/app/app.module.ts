@@ -14,7 +14,7 @@ import { TestComponent } from './components/test/test.component';
 import { LoginComponent } from './routes/login/login.component';
 import { NavLoginComponent } from './components/navbar/nav-login/nav-login.component';
 import { NavLogoutComponent } from './components/navbar/nav-logout/nav-logout.component';
-
+import { OAuthModule, OAuthService } from 'angular-oauth2-oidc';
 
 @NgModule({
   declarations: [
@@ -34,9 +34,24 @@ import { NavLogoutComponent } from './components/navbar/nav-logout/nav-logout.co
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    OAuthModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+  constructor(private oauthService: OAuthService) {
+    this.oauthService.configure({
+      clientId: '652639111593-5rsu4pi7mn1s718n46ivn3cknl1vc8ev.apps.googleusercontent.com',
+      issuer: 'https://accounts.google.com',
+      redirectUri: window.location.origin,
+      responseType: 'code',
+      scope: 'openid profile email',
+    });
+
+    this.oauthService.setStorage(localStorage);
+    this.oauthService.loadDiscoveryDocumentAndTryLogin();
+  }
+}
