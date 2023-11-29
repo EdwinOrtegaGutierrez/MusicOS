@@ -1,3 +1,56 @@
+.g-sign-in-button {
+    margin: 10px;
+    display: inline-block;
+    width: 280px; /* Ancho fijo para el contenedor */
+    height: 50px;
+    background-color: #42B5F4;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .25);
+    transition: background-color .218s, border-color .218s, box-shadow .218s;
+}
+
+.g-sign-in-button:hover {
+    cursor: pointer;
+    box-shadow: 0 0 3px 3px rgba(66, 133, 244, .3);
+}
+
+.g-sign-in-button:active {
+    background-color: #3aa4dd;
+}
+
+.g-sign-in-button .content-wrapper {
+    height: 100%;
+    width: 100%;
+    border: 1px solid transparent;
+}
+
+.g-sign-in-button img {
+    width: 35px;
+    height: 35px;
+}
+
+.g-sign-in-button .logo-wrapper {
+    background: #fff;
+    width: 48px;
+    height: 100%;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+.g-sign-in-button .text-container {
+    font-weight: 500;
+    letter-spacing: .21px;
+    font-size: 20px;
+    line-height: 48px;
+    vertical-align: top;
+    border: none;
+    display: inline-block;
+    text-align: center;
+    width: calc(100% - 48px); /* El ancho ajustado restando el ancho del logo-wrapper */
+}
+
+
 .navbar-nav .nav-item {
     margin-right: 20px; /* Añade margen derecho para aumentar el espacio entre elementos */
 }

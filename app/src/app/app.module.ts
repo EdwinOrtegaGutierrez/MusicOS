@@ -15,6 +15,7 @@ import { LoginComponent } from './routes/login/login.component';
 import { NavLoginComponent } from './components/navbar/nav-login/nav-login.component';
 import { NavLogoutComponent } from './components/navbar/nav-logout/nav-logout.component';
 import { OAuthModule, OAuthService } from 'angular-oauth2-oidc';
+import { CarritoComponent } from './routes/carrito/carrito.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { OAuthModule, OAuthService } from 'angular-oauth2-oidc';
     TestComponent,
     LoginComponent,
     NavLoginComponent,
-    NavLogoutComponent
+    NavLogoutComponent,
+    CarritoComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +44,8 @@ import { OAuthModule, OAuthService } from 'angular-oauth2-oidc';
 })
 export class AppModule {
 
-  constructor(private oauthService: OAuthService) {
+  constructor() {
+    /*
     this.oauthService.configure({
       clientId: '652639111593-5rsu4pi7mn1s718n46ivn3cknl1vc8ev.apps.googleusercontent.com',
       issuer: 'https://accounts.google.com',
@@ -50,8 +53,6 @@ export class AppModule {
       responseType: 'code',
       scope: 'openid profile email',
     });
-
-    this.oauthService.setStorage(localStorage);
-    this.oauthService.loadDiscoveryDocumentAndTryLogin();
+    */
   }
 }

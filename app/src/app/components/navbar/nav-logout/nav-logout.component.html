@@ -37,9 +37,6 @@
                     Acceder | Registrarse
                 </button>
             </form> 
-            <button (click)="loginWithGoogle()">Iniciar sesión con Google</button>
-   <button (click)="logout()">Cerrar sesión</button>
-   <button (click)="getUserInfo()">Obtener información del usuario</button>
         </div>
     </div>
 </nav>  
@@ -67,6 +64,20 @@
                             <button type="submit" class="btn btn-danger " id="login" (click)="validarLogin()">Acceder</button>
                         </div>
                         <a href=""><p class="h-6">¿Olvidaste tu contraseña?</p></a>
+                        <div class="col-auto text-center">
+                            <a (click)="getUserByGoogle()">
+                                <div class="g-sign-in-button">
+                                    <div class="content-wrapper">
+                                        <div class="logo-wrapper">
+                                            <img src="../../../../assets/img/google/google.png" >
+                                        </div>
+                                        <span class="text-container">
+                                            <span>Iniciar con google</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
                     </div>
                     <div class="col-md-6 col-izq">
                         <h2 class="text-center text-uppercase display-4">Registro</h2>
@@ -89,13 +100,26 @@
                         <div class="col-auto text-center">
                             <button type="submit" class="btn btn-danger" id="registrar" (click)="validarRegistro()">Registrar</button>
                         </div>
+                        <div class="col-auto text-center">
+                            <a (click)="getUserByGoogle()">
+                                <div class="g-sign-in-button">
+                                    <div class="content-wrapper">
+                                        <div class="logo-wrapper">
+                                            <img src="../../../../assets/img/google/google.png" >
+                                        </div>
+                                        <span class="text-container">
+                                            <span>Registrar con google</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 <!-- MODAL CONOCENOS -->
 <div class="modal fade" id="contactanos" tabindex="1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">

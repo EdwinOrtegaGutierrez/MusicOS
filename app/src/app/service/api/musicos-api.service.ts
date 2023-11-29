@@ -15,6 +15,7 @@ export class MusicosApiService {
   private albumesUrl = "http://localhost:5094/api/Albumes/Albumes";
   private albumImageUrl = "localhost:5094/api/Images/getImage/";
   private albumCategoriesUrl = "http://localhost:5094/api/Albumes/Albumes_Categorias?categoria";
+  private carritoUrl = "http://localhost:5094/api/Carrito/getCarrito?id_cliente";
 
   imageSrc: string | ArrayBuffer | null = null;
 
@@ -48,6 +49,10 @@ export class MusicosApiService {
 
   albumCategories(category: string){
     return this.http.get<any>(this.albumCategoriesUrl+`=${category}`);
+  }
+
+  carrito(id: number){
+    return this.http.get<any>(this.carritoUrl+`=${id}`);
   }
 
   // Método POST

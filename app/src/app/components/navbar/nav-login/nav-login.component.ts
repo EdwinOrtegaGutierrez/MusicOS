@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { GoogleApiService } from 'src/app/service/api/google-api.service';
 
 interface ContactIcon {
   description: string;
@@ -12,6 +13,9 @@ interface ContactIcon {
   styleUrls: ['./nav-login.component.css']
 })
 export class NavLoginComponent {
+
+  constructor(private googleApi: GoogleApiService){}
+
   // Contacts Icons
   contactsIcons: ContactIcon[] = [
     {
@@ -36,6 +40,7 @@ export class NavLoginComponent {
     document.cookie = "password=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     document.cookie = "email=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    this.googleApi.singOut();
     window.location.reload();
   }
 }

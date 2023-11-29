@@ -4,22 +4,22 @@
         <thead>
             <tr>
             <th scope="col">#</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Precio</th>
+            <th scope="col">Album</th>
+            <th scope="col">Artista</th>
+            <th scope="col">Total</th>
             <th scope="col">Cantidad</th>
-            <th scope="col">Subtotal</th>
             </tr>
         </thead>
 
         <tbody>
-        <tr *ngFor="let item of listaItemsCarrito">
-            <td>{{item.idproducto}}<</td>
+        <tr *ngFor="let item of productsItems">
+            <td>{{item.id_album}}</td>
             <td>{{item.nombre}}</td>
-            <td>{{item.precio }}</td>
+            <td>{{item.artista}}</td>
+            <td>{{item.total }}</td>
             <td>{{item.cantidad}}</td>
-            <td>{{item.cantidad! * item.precio! }}</td>
         </tr> 
         </tbody>
     </table>
-    <button class="btn btn-danger" (click)="vaciarCarrito()">Vaciar carrito</button>
+    <button class="btn btn-danger" >Vaciar carrito</button>
 </main>

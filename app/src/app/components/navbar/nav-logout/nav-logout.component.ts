@@ -1,11 +1,20 @@
 import { Component } from '@angular/core';
 import { MusicosApiService } from 'src/app/service/api/musicos-api.service';
 import { MusicosAuthLoginService } from 'src/app/service/api/musicos-auth-login.service';
-import { OAuthService } from 'angular-oauth2-oidc';
+import { GoogleApiService, UserInfo } from 'src/app/service/api/google-api.service';
+import { AuthConfig, OAuthService } from 'angular-oauth2-oidc';
 
 interface ContactIcon {
   description: string;
   iconName: string;
+}
+
+const oAuthConfig: AuthConfig = {
+  issuer: 'https://accounts.google.com',
+  strictDiscoveryDocumentValidation: false,
+  redirectUri: window.location.origin,
+  clientId: '652639111593-5rsu4pi7mn1s718n46ivn3cknl1vc8ev.apps.googleusercontent.com',
+  scope: 'openid profile email'
 }
 
 
@@ -16,8 +25,52 @@ interface ContactIcon {
 })
 export class NavLogoutComponent {
   isLoggedIn: boolean | undefined;
-    
-  constructor(private musicosApiService: MusicosApiService, private authLogin: MusicosAuthLoginService, private oauthService: OAuthService){}
+  userInfo: any;
+  userProfile?: UserInfo;
+
+  constructor(
+    private musicosApiService: MusicosApiService, 
+    private authLogin: MusicosAuthLoginService, 
+    private googleApi: GoogleApiService,
+    private readonly oAuthService: OAuthService
+  ){
+    this.oAuthService.configure(oAuthConfig);
+    this.oAuthService.loadDiscoveryDocument().then( () => {
+      this.oAuthService.tryLoginImplicitFlow().then( () => {
+        if(this.oAuthService.hasValidAccessToken()){
+          this.oAuthService.loadUserProfile().then( (userprofile) => {
+            const profile: UserInfo = JSON.parse(JSON.stringify(userprofile));
+            
+            const body = {
+              "nombre": profile.info.given_name,
+              "apellidos": profile.info.family_name,
+              "correo": profile.info.email,
+              "contraseña": profile.info.sub
+            }
+          
+            this.musicosApiService.createClient(body).subscribe( response => {
+                if(response.success === true){
+                  this.musicosApiService.loginCliente(body.correo, body.contraseña).subscribe(response => {
+                    let correo = response.user.correo;
+                    let contraseña = response.user.contraseña;
+                    let id = response.user.userId;
+                    this.isLoggedIn = true; 
+                    this.authLogin.setUser(correo, contraseña, id);
+                  });
+                }
+              });
+            this.musicosApiService.loginCliente(body.correo, body.contraseña).subscribe(response => {
+              let correo = response.user.correo;
+              let contraseña = response.user.contraseña;
+              let id = response.user.userId;
+              this.isLoggedIn = true; 
+              this.authLogin.setUser(correo, contraseña, id);
+            });
+          });
+        }
+      });
+    });
+  }
 
   // Contacts Icons
   contactsIcons: ContactIcon[] = [
@@ -39,19 +92,10 @@ export class NavLogoutComponent {
     }
   ];
 
-  loginWithGoogle() {
-    this.oauthService.initImplicitFlow();
+  async getUserByGoogle() {    
+    await this.googleApi.getUser();
   }
-
-  logout() {
-    this.oauthService.logOut();
-  }
-
-  getUserInfo() {
-    const claims = this.oauthService.getIdentityClaims();
-    // Aquí puedes acceder a los datos del usuario
-    console.log(claims);
-  }
+  
 
   async getValueAndTrim(elementId: string) {
     const inputElement = document.getElementById(elementId) as HTMLInputElement | null;
@@ -98,7 +142,6 @@ export class NavLogoutComponent {
     );
   }
 
-  
   async validarLogin() {
     // Obtener los valores de los campos de email y contraseña
     const email = await this.getValueAndTrim("emailAccess");
