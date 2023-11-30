@@ -24,6 +24,8 @@ namespace API_MusicOS.Resource
             );
         }
 
+        public string Put(string query) => new Database().SetInformation(query);
+        
         public string Put(string method, dynamic query)
         {
             // Create a dynamic method: Can be any about Set function

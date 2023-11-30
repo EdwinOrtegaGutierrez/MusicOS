@@ -49,7 +49,7 @@ export class NavLogoutComponent {
             }
           
             this.musicosApiService.createClient(body).subscribe( response => {
-                if(response.success === true){
+                if(response.success === true && body.correo != "" && body.contraseña != ""){
                   this.musicosApiService.loginCliente(body.correo, body.contraseña).subscribe(response => {
                     let correo = response.user.correo;
                     let contraseña = response.user.contraseña;

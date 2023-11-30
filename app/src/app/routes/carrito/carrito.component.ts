@@ -9,6 +9,7 @@ import { MusicosApiService } from 'src/app/service/api/musicos-api.service';
 export class CarritoComponent implements OnInit {
 
   productsItems: any[] = [];
+  id_client: number = 0;
 
   constructor(private musicosApiService: MusicosApiService) { }
 
@@ -16,8 +17,9 @@ export class CarritoComponent implements OnInit {
     this.musicosApiService.carrito(parseInt(this.getCookieValue('id'))).subscribe(products => {
       this.productsItems = products.carrito;
     });
+    this.id_client = parseInt(this.getCookieValue("id"));
   }
-  
+
 
   getCookieValue(cookieName: string) {
     const cookies = document.cookie.split(';'); // Divide la cadena de cookies en un arreglo
@@ -29,5 +31,20 @@ export class CarritoComponent implements OnInit {
       }
     }
     return ""; // Devuelve null si la cookie no se encuentra
+  }
+
+  deleteItem(id_carrito: number){
+    this.musicosApiService.deleteCarrito(id_carrito).subscribe( response => {
+      alert(response);
+    });;
+    window.location.reload();
+  }
+
+  emptyCarrito(id_client: number){
+    
+    this.musicosApiService.emptyCarrito(id_client).subscribe( response => {
+      alert(response);
+    });
+    window.location.reload();
   }
 }

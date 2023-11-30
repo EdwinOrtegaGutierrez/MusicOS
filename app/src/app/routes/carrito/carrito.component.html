@@ -1,25 +1,39 @@
-<main data-bs-theme="dark" style="background-color: #282c34;" id="page-content">
+<div class="carrito-container" data-bs-theme="dark" style="background-color: #282c34;" id="page-content">
     
     <table class="table">
         <thead>
             <tr>
-            <th scope="col">#</th>
-            <th scope="col">Album</th>
-            <th scope="col">Artista</th>
-            <th scope="col">Total</th>
-            <th scope="col">Cantidad</th>
+                <th scope="col">Folio</th>
+                <th scope="col">Album</th>
+                <th scope="col">Artista</th>
+                <th scope="col">Valor unitario</th>
+                <th scope="col">Total</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Eliminar</th>
+                <th scope="col">Comprar</th>
             </tr>
         </thead>
 
         <tbody>
         <tr *ngFor="let item of productsItems">
-            <td>{{item.id_album}}</td>
+            <td>{{item.id_carrito}}</td>
             <td>{{item.nombre}}</td>
             <td>{{item.artista}}</td>
+            <td>{{item.total / item.cantidad}}</td>
             <td>{{item.total }}</td>
             <td>{{item.cantidad}}</td>
+            <td>
+                <button class="btn btn-danger" (click)="deleteItem(item.id_carrito)">Eliminar Producto</button>
+            </td>
+            <td>
+                <a class="btn btn-success" href="http://localhost:4200/purchase_order/album/{{item.id_carrito}}">Comprar Carrito</a>
+            </td>
         </tr> 
         </tbody>
     </table>
-    <button class="btn btn-danger" >Vaciar carrito</button>
-</main>
+    
+    <div class="d-flex justify-content-center">
+        <button class="btn btn-danger  me-4" (click)="emptyCarrito(id_client)">Vaciar carrito</button>
+        <a class="btn btn-success" href="http://localhost:4200/purchase_order/user/{{id_client}}">Comprar Carrito</a>
+    </div>
+</div>

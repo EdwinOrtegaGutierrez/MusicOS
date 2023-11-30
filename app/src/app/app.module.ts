@@ -8,14 +8,15 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './routes/home/home.component';
 import { StoreComponent } from './routes/store/store.component';
 import { AboutUsComponent } from './routes/about-us/about-us.component';
-import { GenerosComponent } from './routes/generos/generos.component';
 import { StoreGenerosComponent } from './routes/store/store-generos/store-generos.component';
 import { TestComponent } from './components/test/test.component';
 import { LoginComponent } from './routes/login/login.component';
 import { NavLoginComponent } from './components/navbar/nav-login/nav-login.component';
 import { NavLogoutComponent } from './components/navbar/nav-logout/nav-logout.component';
-import { OAuthModule, OAuthService } from 'angular-oauth2-oidc';
+import { OAuthModule } from 'angular-oauth2-oidc';
 import { CarritoComponent } from './routes/carrito/carrito.component';
+import { PurchaseOrderComponent } from './routes/purchase-order/purchase-order.component';
+import { NgxPayPalModule } from 'ngx-paypal';
 
 @NgModule({
   declarations: [
@@ -25,16 +26,17 @@ import { CarritoComponent } from './routes/carrito/carrito.component';
     HomeComponent,
     StoreComponent,
     AboutUsComponent,
-    GenerosComponent,
+    PurchaseOrderComponent,
     StoreGenerosComponent,
     TestComponent,
     LoginComponent,
     NavLoginComponent,
     NavLogoutComponent,
-    CarritoComponent
+    CarritoComponent,
   ],
   imports: [
     BrowserModule,
+    NgxPayPalModule,
     AppRoutingModule,
     HttpClientModule,
     OAuthModule.forRoot()

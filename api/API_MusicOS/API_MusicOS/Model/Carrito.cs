@@ -21,4 +21,17 @@
         public string Artista { get => artista; set => artista = value; }
 
     }
+
+    public class AddCarrito
+    {
+        private int id_album = 0;
+        private int id_cliente = 0;
+        private int cantidad = 0;
+        private float total = 0;
+
+        public int Id_album { get => id_album; set => id_album = value; }
+        public int Id_cliente { get => id_cliente; set => id_cliente = value; }
+        public int Cantidad { get => cantidad; set => cantidad = value; }
+        public float Total { get => total; set => total = value; }
+    }
 }

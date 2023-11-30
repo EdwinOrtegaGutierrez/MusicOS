@@ -59,5 +59,74 @@ namespace API_MusicOS.Controllers
                 };
             }
         }
+
+        [HttpPost]
+        [Route("deleteCarrito")]
+        public dynamic DeleteCarrito([FromBody] int id_carrito)
+        {
+            try
+            {
+                new Query().Put($"DELETE FROM carrito WHERE `carrito`.`id_carrito` = {id_carrito}");
+
+                return new
+                {
+                    Success = true,
+                };
+            }
+            catch (Exception ex) 
+            {
+                return new
+                {
+                    Success = false,
+                    Carrito = ex
+                };
+            }
+        }
+
+        [HttpPost]
+        [Route("emptyCarrito")]
+        public dynamic EmptyCarrito([FromBody] int id_cliente)
+        {
+            try
+            {
+                new Query().Put($"DELETE FROM carrito WHERE id_cliente = {id_cliente};");
+                
+                return new
+                {
+                    Success = true,
+                };
+            }
+            catch (Exception ex)
+            {
+                return new
+                {
+                    Success = false,
+                    Carrito = ex
+                };
+            }
+        }
+
+        [HttpPost]
+        [Route("addCarrito")]
+        public dynamic AddCarrito([FromBody] AddCarrito addCarrito)
+        {
+            try
+            {
+                new Query().Put($"INSERT INTO `carrito` (`id_carrito`, `id_album`, `id_cliente`, `cantidad`, `total`) VALUES (NULL, '{addCarrito.Id_album}', '{addCarrito.Id_cliente}', '{addCarrito.Cantidad}', '{addCarrito.Total}');");
+
+                return new
+                {
+                    Success = true,
+                };
+            }
+            catch (Exception ex)
+            {
+                return new
+                {
+                    Success = false,
+                    Carrito = ex
+                };
+            }
+        }
     }
 }

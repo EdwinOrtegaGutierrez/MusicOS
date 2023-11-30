@@ -16,6 +16,9 @@ export class MusicosApiService {
   private albumImageUrl = "localhost:5094/api/Images/getImage/";
   private albumCategoriesUrl = "http://localhost:5094/api/Albumes/Albumes_Categorias?categoria";
   private carritoUrl = "http://localhost:5094/api/Carrito/getCarrito?id_cliente";
+  private deleteCarritoUrl = "http://localhost:5094/api/Carrito/deleteCarrito";
+  private emptyCarritoUrl = "http://localhost:5094/api/Carrito/emptyCarrito";
+  private addCarritoUrl = "http://localhost:5094/api/Carrito/addCarrito";
 
   imageSrc: string | ArrayBuffer | null = null;
 
@@ -59,5 +62,20 @@ export class MusicosApiService {
   createClient(body: any): Observable<any>{
     const headers = { 'Content-Type': 'application/json'}
     return this.http.post<any>(this.createClientUrl, body, {'headers':headers});
+  }
+
+  deleteCarrito(body: number){
+    const headers = { 'Content-Type': 'application/json'}
+    return this.http.post<any>(this.deleteCarritoUrl, body, {'headers':headers});
+  }
+
+  emptyCarrito(body: number){
+    const headers = { 'Content-Type': 'application/json'}
+    return this.http.post<any>(this.emptyCarritoUrl, body, {'headers':headers});
+  }
+
+  addCarrito(body: any){
+    const headers = { 'Content-Type': 'application/json'}
+    return this.http.post<any>(this.addCarritoUrl, body, {'headers':headers});
   }
 }

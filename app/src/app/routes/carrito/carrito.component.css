@@ -1,3 +1,8 @@
+.carrito-container{
+    
+    min-height: 93.4vh;
+}
+
 .bg-img{
     background-image: url("src\assets\img\carrito\fondo_carrito.jpg");
     background-size: cover; 

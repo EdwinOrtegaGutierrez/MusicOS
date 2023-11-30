@@ -6,7 +6,7 @@ import { StoreGenerosComponent } from './routes/store/store-generos/store-genero
 import { AboutUsComponent } from './routes/about-us/about-us.component';
 import { CarritoComponent } from './routes/carrito/carrito.component';
 import { AjustesComponent } from './routes/ajustes/ajustes.component';
-import { LoginGoogleComponent } from './components/login-google/login-google.component';
+import { PurchaseOrderComponent } from './routes/purchase-order/purchase-order.component';
 
 const routes: Routes = [
   {
@@ -34,8 +34,16 @@ const routes: Routes = [
     component:AjustesComponent
   },
   {
-    path:"google",
-    component:LoginGoogleComponent
+    path:"purchase_order/album/:token",
+    component:PurchaseOrderComponent
+  },
+  {
+    path:"purchase_order/user/:token",
+    component:PurchaseOrderComponent
+  },
+  {
+    path:"**",
+    redirectTo:""
   }
 ];
 

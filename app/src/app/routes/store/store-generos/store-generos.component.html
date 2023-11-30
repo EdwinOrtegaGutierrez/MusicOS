@@ -27,6 +27,8 @@
                     <small>{{ album.fecha_Salida | date:'yyyy-MM-dd' }}</small>
                     <small class="subtitle">Precio</small>
                     <small class="small-bottom">${{album.precio}}</small>
+                    
+                    <button class="btn btn-danger" (click)="addCarrito(album.codigo_Album, id_client, album.precio)">Agregar</button>
                 </div>     
             </ng-container>
         </div>

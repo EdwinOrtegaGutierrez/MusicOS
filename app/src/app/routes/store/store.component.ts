@@ -18,6 +18,7 @@ export class StoreComponent {
   testCategory: any[] = [];
   item = this.albumProducts;
   imageUrl: string = "http://localhost:5094/api/Images/getImage/";
+  id_client: number = 0;
 
   constructor(private _storeJs: ImportJsService, private musicosApiService: MusicosApiService)
   {
@@ -28,6 +29,8 @@ export class StoreComponent {
     this.categorias();
     // FUNCIONES DE PRUEBA, ELIMINARLAS CUANDO HAYAN CONCLUIDO LAS PRUEBAS
     this.getProductsJson();
+    
+    this.id_client = parseInt(this.getCookieValue("id"));
   }
 
   categorias(){
@@ -42,49 +45,37 @@ export class StoreComponent {
   }
 
   //agrega items a la tabla del carrito
-  
-  agregarCarrito(item: any){
-    // {}, [{}, {}], [0].Cout, {} == null
-    // this.item.length != 0
 
-    if (item && item.idproducto && item.nombre && item.precio) {
-    let iCarrito : ItemCarrito = {
-      idproducto: item.idproducto,
-      nombre: item.nombre,
-      precio: item.precio,
-      cantidad: 1
+  addCarrito(id_album: number, id_cliente: number, precio: number){
+    const cantidad = parseInt(prompt("Ingresa la cantidad: ") || ""); 
+
+    const total = cantidad * precio; 
+    
+
+    // Obtener datos
+    let body = {
+      "id_album": id_album,
+      "id_cliente": id_cliente,
+      "cantidad": cantidad,
+      "total": total
     }
 
-    //Agrega al localStorage el item del carrito al que se le clickeo 
-    if(localStorage.getItem("carrito") === null){
-      let carrito: ItemCarrito[] = [];
-      carrito.push(iCarrito);
-      localStorage.setItem("carrito", JSON.stringify(carrito));
-    }
-    else{
-      let carritoStorage = localStorage.getItem("carrito") as string;
-      let carrito = JSON.parse(carritoStorage);
-      
-      let index = -1;
-      for(let i = 0; i<carrito.length; i++){
-        let itemC: ItemCarrito = carrito[i];
-        if(iCarrito.idproducto === itemC.idproducto){
-          index = i;
-          break;
-        }
-      }
-      
-      //Si se clickea mas de una vez el mismo producto lo suma en una sola linea
-      if(index === -1){
-        carrito.push(iCarrito);
-        localStorage.setItem("carrito", JSON.stringify(carrito));
-      }
-      else{
-        let itemCarrito: ItemCarrito = carrito[index];
-        itemCarrito.cantidad!++;
-        carrito[index] = itemCarrito;
-        localStorage.setItem("carrito", JSON.stringify(carrito));
-      }
-    }   
+    // Agregar
+    this.musicosApiService.addCarrito(body).subscribe( response => {
+      alert(response);
+    });
+    window.location.reload();
   }
-}}
+  
+  getCookieValue(cookieName: string) {
+    const cookies = document.cookie.split(';'); // Divide la cadena de cookies en un arreglo
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].trim(); // Elimina espacios en blanco al inicio y final de la cookie
+      // Verifica si la cookie comienza con el nombre buscado
+      if (cookie.startsWith(`${cookieName}=`)) {
+        return cookie.substring(cookieName.length + 1); // Devuelve el valor de la cookie
+      }
+    }
+    return ""; // Devuelve null si la cookie no se encuentra
+  }
+}
